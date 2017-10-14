@@ -53,13 +53,3 @@ cask "virtualbox"
 cask "virtualbox-extension-pack"
 cask "visual-studio-code"
 cask "vlc"
-
-# mas signin --dialog bryantbiggs@gmail.com
-mas "Bear", id: 1091189122
-mas "Caffeine", id: 411246225
-mas "Clear", id: 504544917
-mas "DrCleaner", id: 921458519
-mas "Magnet", id: 441258766
-mas "Snappy", id: 512617038
-mas "Spark", id: 1176895641
-# mas upgrade

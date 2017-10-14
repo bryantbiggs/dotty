@@ -15,7 +15,20 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 echo "Remove all app icons from the dock"
 defaults write com.apple.dock persistent-apps -array
 
+echo "Install app store apps"
+mas signin --dialog bryantbiggs@gmail.com
+mas install 1091189122  # Bear
+mas install 411246225   # Caffeine
+mas install 504544917   # Clear
+mas install 921458519   # DrCleaner
+mas install 441258766   # Magnet
+mas install 512617038   # Snappy
+mas install 1176895641  # Spark
+mas upgrade
+
 echo "Add selected icons to dock"
+defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Launchpad.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/App Store.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Visual Studio Code.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Firefox.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Clear.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
@@ -28,5 +41,4 @@ defaults write com.apple.dock persistent-apps -array-add'<dict><key>tile-data</k
 killall Dock
 
 echo "Update apps"
-mas upgrade
 brew update; brew upgrade; brew prune; brew cleanup; brew doctor
