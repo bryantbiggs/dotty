@@ -1,6 +1,5 @@
 tap "caskroom/cask"
 tap "codeclimate/formulae"
-tap "go-delve/delve"
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/core"
@@ -17,12 +16,10 @@ brew "docker-swarm"
 brew "geckodriver"
 brew "git"
 brew "go"
-brew "go-delve/delve/delve"
 brew "mas"
 brew "nano"
 brew "node"
 brew "openssl"
-brew "python"
 brew "heroku"
 brew "phantomjs"
 brew "postgresql", restart_service: true
@@ -57,7 +54,7 @@ cask "virtualbox-extension-pack"
 cask "visual-studio-code"
 cask "vlc"
 
-mas signin --dialog bryantbiggs@gmail.com
+# mas signin --dialog bryantbiggs@gmail.com
 mas "Bear", id: 1091189122
 mas "Caffeine", id: 411246225
 mas "Clear", id: 504544917
@@ -65,4 +62,4 @@ mas "DrCleaner", id: 921458519
 mas "Magnet", id: 441258766
 mas "Snappy", id: 512617038
 mas "Spark", id: 1176895641
-mas upgrade
+# mas upgrade
