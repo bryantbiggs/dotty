@@ -6,6 +6,8 @@ sudo -u $USER /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/H
 echo "Brew install"
 brew bundle
 
+git config --global credential.helper osxkeychain
+
 # echo "Dock - Remove all default app icons"
 # defaults write com.apple.dock persistent-apps -array
 #
