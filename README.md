@@ -1,2 +1,2 @@
 # dotfiles
-My config and dotfiles for macbook
+My MacBook config and dotfiles

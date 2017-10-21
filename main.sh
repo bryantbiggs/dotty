@@ -8,14 +8,14 @@ brew bundle
 
 git config --global credential.helper osxkeychain
 
-# echo "Dock - Remove all default app icons"
-# defaults write com.apple.dock persistent-apps -array
-#
-# echo "Finder - Disable the warning when changing a file extension"
-# defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-#
-# echo "Remove all app icons from the dock"
-# defaults write com.apple.dock persistent-apps -array
+echo "Dock - Remove all default app icons"
+defaults write com.apple.dock persistent-apps -array
+
+echo "Finder - Disable the warning when changing a file extension"
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+echo "Remove all app icons from the dock"
+defaults write com.apple.dock persistent-apps -array
 
 echo "Install app store apps"
 mas signin --dialog bryantbiggs@gmail.com
