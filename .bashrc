@@ -1,4 +1,3 @@
-
 # =====================================================
 # ----- ZSH
 
@@ -25,6 +24,8 @@ fi
 
 # =====================================================
 # ----- Aliases
+
+alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
 
 # Clean up python files
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
