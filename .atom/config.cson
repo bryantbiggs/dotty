@@ -40,7 +40,7 @@
       genAccent: true
       paintCursor: true
     fonts:
-      fontSize: 14
+      fontSize: 12
     tabs:
       compactTabs: true
       noTabMinWidth: true
@@ -54,6 +54,8 @@
   "atom-package-deps":
     ignored: []
   core:
+    audioBeep: false
+    closeDeletedFileTabs: true
     customFileTypes:
       "source.ini": [
         ".buckconfig"
@@ -66,13 +68,16 @@
       "source.python": [
         "BUCK"
       ]
+    excludeVcsIgnoredPaths: false
     telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
-      "atom-material-syntax-dark"
+      "atom-material-syntax"
     ]
+    titleBar: "hidden"
   editor:
-    fontSize: 11
+    fontFamily: "Anonymous Pro"
+    fontSize: 10
   "exception-reporting":
     userId: "2c098c69-173b-43fb-de3e-855752863e43"
   "go-plus":
