@@ -25,6 +25,7 @@ brew "postgresql", restart_service: true
 brew "wakatime-cli"
 brew "yarn"
 brew "zsh"
+brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 cask "atom"

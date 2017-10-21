@@ -35,4 +35,8 @@ brew update; brew upgrade; brew prune; brew cleanup; brew doctor
 # echo "Start docker and install codeclimate"
 # brew "codeclimate/formulae/codeclimate"
 
+# Note - will create a .zshrc file so run before copying over custom .zshrc
+echo "Install oh-my-zhs"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 source ./macos.sh
