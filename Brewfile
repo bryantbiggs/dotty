@@ -30,7 +30,6 @@ brew "zsh-syntax-highlighting"
 
 cask "atom"
 cask "alfred"
-cask "anaconda"
 cask "appcleaner"
 cask "caffeine"
 cask "docker"
