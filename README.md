@@ -1,10 +1,10 @@
-# dotfiles
+# Dotty
 
 My MacBook config and dotfiles
 
 --------------------------------------------------------------------------------
 
-![](./img/gibbonswhaatbig.jpg)
+<img src="./img/gibbonswhaatbig.jpg" style="margin: 5px 5px -10px 5px; border: 2px solid black;" /><div style="text-align: center;"><em>Photo credit: Roy Lichtenstein</em></div>
 
 --------------------------------------------------------------------------------
 
@@ -35,3 +35,9 @@ $ cp -r Documents/dotfiles/.hyper_plugins .
 $ cd .hyper_plugins/
 $ npm install
 ```
+
+--------------------------------------------------------------------------------
+
+## VSCode
+
+- Copy contents of `.code` to `Library/Application Support/Code/User`:

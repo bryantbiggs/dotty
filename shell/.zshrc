@@ -1,3 +1,28 @@
+# =====================================================
+
+# PostgreSQL logins
+alias psql_conf='atom /usr/local/etc/postgresql/pg_service.conf'
+
+# Clean Apple's crap
+alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
+
+# Clean up python generated files
+alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf'
+
+# Autoflake the shit out of that directory
+alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports  --remove-unused-variables .'
+
+# Run all clean commands
+alias runclean='dsclean; pyclean'
+
+# Brew all the things!!!
+alias brewup="apm update --c false; sudo -H pip-review --auto; brew update; brew upgrade; mas upgrade; brew prune; brew cleanup; brew cask cleanup; brew doctor"
+
+# =====================================================
+
+# Activate direnv
+eval "$(direnv hook zsh)"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -83,3 +108,7 @@ export ARCHFLAGS="-arch x86_64"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# added by travis gem
+[ -f /Users/bryant.biggs/.travis/travis.sh ] && source /Users/bryant.biggs/.travis/travis.sh
+export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"

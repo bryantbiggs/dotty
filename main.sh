@@ -1,42 +1,51 @@
 #!/bin/bash
+# =====================================================
+# NOTE - dotfiles will have to be downloaded manually first
+# =====================================================
+# Homebrew (applications)
+sh brew/brew.sh
 
-echo "Downloading - Homebrew"
-sudo -u $USER /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" \ </dev/null
+# =====================================================
+# OSX settings
+sh env/macos.sh
 
-echo "Brew install"
-brew bundle
+# =====================================================
+# Git settings
+cp ./git/.git-completion.bash ~
+cp ./git/.gitconfig ~
 
-git config --global credential.helper osxkeychain
+# =====================================================
+# Atom settings
+cp -r ./.atom ~  && apm install --packages-file ~/.atom/packages.list
 
-echo "Dock - Remove all default app icons"
-defaults write com.apple.dock persistent-apps -array
+# =====================================================
+# VS Code settings
+cp -r ./code/User ~/Library/Application\ Support/Code/
+sh ./code/code.sh
 
-echo "Finder - Disable the warning when changing a file extension"
-defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# =====================================================
+# Python settings
+# cp -r ./python/.jupyter ~
+sudo pip3 install -r ./python/pip.txt
 
-echo "Remove all app icons from the dock"
-defaults write com.apple.dock persistent-apps -array
+# =====================================================
+# Hyper.js terminal
+cp -r ./shell/.hyper_plugins ~ && npm --prefix ~/.hyper_plugins install ~/.hyper_plugins
+cp ./shell/.hyper.js ~
 
-echo "Install app store apps"
-mas signin --dialog bryantbiggs@gmail.com
-mas install 1091189122  # Bear
-mas install 411246225   # Caffeine
-mas install 504544917   # Clear
-mas install 921458519   # DrCleaner
-mas install 441258766   # Magnet
-mas install 512617038   # Snappy
-mas install 1176895641  # Spark
-mas upgrade
+# =====================================================
+# Shell settings
+# Note running `sh shell/shell.sh` create a .zshrc file so run before copying over custom .zshrc
+sh ./shell/shell.sh
 
+cp ./shell/.bash_profile ~
+cp ./shell/.bashrc ~
+cp ./shell/.zshrc ~
 
-echo "Update apps"
-brew update; brew upgrade; brew prune; brew cleanup; brew doctor
+# =====================================================
+# Wakatime api key
+ln -s ~/OneDrive/.wakatime.cfg ~/.wakatime.cfg
 
-# echo "Start docker and install codeclimate"
-# brew "codeclimate/formulae/codeclimate"
-
-# Note - will create a .zshrc file so run before copying over custom .zshrc
-echo "Install oh-my-zhs"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-source ./macos.sh
+# =====================================================
+# All set, source it!
+source ~/.bash_profile
