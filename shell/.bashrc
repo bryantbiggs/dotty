@@ -24,3 +24,8 @@ fi
 
 # added by travis gem
 [ -f /Users/bryant.biggs/.travis/travis.sh ] && source /Users/bryant.biggs/.travis/travis.sh
+
+# Virtualenvwrapper
+export WORKON_HOME=~/Documents/venvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+. /usr/local/bin/virtualenvwrapper.sh
