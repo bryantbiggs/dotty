@@ -10,7 +10,6 @@ compinit
 
 # Pure prompt
 autoload -U promptinit; promptinit
-prompt pure
 
 # Zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
