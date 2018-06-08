@@ -7,11 +7,11 @@
         autopep8:
           path: "/usr/local/bin/autopep8"
       _analyticsUserId: "e2daad5b-6bf1-40e0-b27c-cee3c84f6cd6"
+      beautifyEntireFileOnSave: false
     html:
       beautify_on_save: true
       indent_inner_html: true
     js:
-      beautify_on_save: true
       jslint_happy: true
       keep_array_indentation: true
       keep_function_indentation: true
@@ -33,6 +33,9 @@
       space_in_paren: true
     python:
       beautify_on_save: false
+    terraform:
+      beautify_on_save: true
+    yaml: {}
   "atom-material-ui":
     colors:
       abaseColor: "#5e5e5e"
@@ -68,6 +71,9 @@
       "source.python": [
         "BUCK"
       ]
+    disabledPackages: [
+      "atom-beautify"
+    ]
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
     themes: [
@@ -76,7 +82,7 @@
     ]
   editor:
     fontFamily: "Anonymous Pro"
-    fontSize: 11
+    fontSize: 10
   "exception-reporting":
     userId: "2c098c69-173b-43fb-de3e-855752863e43"
   "go-plus":
@@ -86,7 +92,9 @@
     panel:
       currentHeight: "14.463840399002494vh"
   kite:
+    editorMetricsEnabled: "yes"
     showKiteTourOnStartup: false
+    showWelcomeNotificationOnStartup: false
   "language-babel":
     autoIndentJSX: true
   "linter-flake8":
@@ -99,6 +107,10 @@
   "linter-ui-default":
     panelHeight: 99
     showPanel: true
+  "sync-settings":
+    _lastBackupHash: "356c030684e61a50c9c6c541273db55e1eb28e26"
+    gistId: "1ab1cc4f75859c38bf60debfa5313301"
+    personalAccessToken: "cd64381ba94b292a053a21c16dacadf6cbbd6063"
   "tree-view": {}
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"

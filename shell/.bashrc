@@ -14,9 +14,6 @@ autoload -U promptinit; promptinit
 # Zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# Load plugins
-plugins=(git)
-
 # load git auto completion if it exists
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
