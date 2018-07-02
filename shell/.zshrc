@@ -11,6 +11,9 @@ alias dclean='docker rmi -f $(docker images --filter "dangling=true" -q --no-tru
 alias tf='terraform'
 # alias tf='terragrunt'
 
+# Heptio Authenticator AWS (EKS)
+alias hauth='heptio-authenticator-aws'
+
 # PostgreSQL logins
 alias psql_conf='atom /usr/local/etc/postgresql/pg_service.conf'
 
@@ -27,7 +30,7 @@ alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports
 alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
-alias brewup="apm update --c false; pip-review --auto; brew update; brew upgrade; mas upgrade; brew prune; brew cleanup; brew cask cleanup; brew doctor"
+alias brewup="apm update --c false; brew update; brew upgrade; mas upgrade; brew prune; brew cleanup; brew cask cleanup; brew doctor"
 
 # =====================================================
 
@@ -76,4 +79,5 @@ export ARCHFLAGS="-arch x86_64"
 export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
 
 # NVM
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
