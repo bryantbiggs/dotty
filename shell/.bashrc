@@ -19,9 +19,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# added by travis gem
-[ -f /Users/bryant.biggs/.travis/travis.sh ] && source /Users/bryant.biggs/.travis/travis.sh
-
 # Virtualenvwrapper
 export WORKON_HOME=~/Documents/venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3

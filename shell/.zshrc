@@ -9,13 +9,9 @@ alias dclean='docker rmi -f $(docker images --filter "dangling=true" -q --no-tru
 
 # Terraform
 alias tf='terraform'
-# alias tf='terragrunt'
 
 # Heptio Authenticator AWS (EKS)
 alias hauth='heptio-authenticator-aws'
-
-# PostgreSQL logins
-alias psql_conf='atom /usr/local/etc/postgresql/pg_service.conf'
 
 # Clean Apple's crap
 alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
@@ -30,7 +26,7 @@ alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports
 alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
-alias brewup="apm update --c false; brew update; brew upgrade; mas upgrade; brew prune; brew cleanup; brew cask cleanup; brew doctor"
+alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; brew prune; brew cleanup; brew doctor"
 
 # =====================================================
 
@@ -64,6 +60,15 @@ source ~/.bashrc
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
+# Nerd font
+alias ls='ls -G's
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+DISABLE_UPDATE_PROMPT=true
+source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -74,10 +79,13 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# added by travis gem
-[ -f /Users/bryant.biggs/.travis/travis.sh ] && source /Users/bryant.biggs/.travis/travis.sh
-export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
-
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
