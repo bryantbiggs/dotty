@@ -1,5 +1,9 @@
 # =====================================================
 
+# Network
+alias ns='dig +short NS'
+alias tr='sudo tcptraceroute'
+
 # Ansible
 alias ap='ansible-playbook'
 alias ag='ansible-galaxy'
