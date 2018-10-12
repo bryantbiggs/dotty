@@ -33,6 +33,19 @@ alias runclean='dsclean; pyclean'
 alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; brew prune; brew cleanup; brew doctor"
 
 # =====================================================
+# Golang
+
+# Add bin to PATH
+
+export PATH=$PATH:/Users/B2/go/bin
+
+# =====================================================
+# Kubernetes
+
+# autocompletion
+if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+
+# =====================================================
 
 # Activate direnv
 eval "$(direnv hook zsh)"
