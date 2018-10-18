@@ -42,8 +42,13 @@ export PATH=$PATH:/Users/B2/go/bin
 # =====================================================
 # Kubernetes
 
-# autocompletion
-if [ $commands[kubectl] ]; then source <(kubectl completion zsh); fi
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get services'
+alias kgn='kubectl get nodes'
+alias kdp='kubectl describe pods'
+alias kds='kubectl describe services'
+alias kdn='kubectl describe nodes'
 
 # =====================================================
 
@@ -68,7 +73,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(git docker kubectl)
 
 # Antigen for zsh shell
 # source /usr/local/share/antigen/antigen.zsh
