@@ -1,5 +1,8 @@
 # =====================================================
 
+# Misc
+alias cat='bat'
+
 # Network
 alias ns='dig +short NS'
 alias tr='sudo tcptraceroute'

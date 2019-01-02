@@ -5,6 +5,11 @@
 	clean = git-lfs clean -- %f
 [user]
 	name = Bryant Biggs
-	email = bryantbiggs@users.noreply.github.com
+	email = bryantbiggs@gmail.com
+	signingkey = 39ED98861B403E55
 [core]
 	editor = nano
+[commit]
+	gpgsign = false
+[gpg]
+	program = gnupg

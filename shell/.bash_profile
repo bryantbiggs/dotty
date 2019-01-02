@@ -24,3 +24,5 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 # Activate ZSH shell
 exec zsh
+
+export PATH="$HOME/.cargo/bin:$PATH"
