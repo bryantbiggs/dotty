@@ -33,7 +33,7 @@ alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports
 alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
-alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; brew prune; brew cleanup; brew doctor"
+alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
 
 # =====================================================
 # Golang
