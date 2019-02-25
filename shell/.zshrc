@@ -33,7 +33,7 @@ alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports
 alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
-alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
+alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
 
 # =====================================================
 # Golang
@@ -54,6 +54,10 @@ alias kds='kubectl describe services'
 alias kdn='kubectl describe nodes'
 
 # =====================================================
+# HomeBrew
+export PATH="/usr/local/sbin:$PATH"
+
+# =====================================================
 
 # Activate direnv
 eval "$(direnv hook zsh)"
@@ -66,7 +70,7 @@ export ZSH=/Users/${USER}/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories much, much faster.
@@ -76,12 +80,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker kubectl)
+plugins=(git docker)
 
 # Antigen for zsh shell
 # source /usr/local/share/antigen/antigen.zsh
 
-source ~/.bashrc
+source $HOME/.bashrc
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
@@ -92,7 +96,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 DISABLE_UPDATE_PROMPT=true
-source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -111,6 +114,3 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh

@@ -8,7 +8,7 @@
 	email = bryantbiggs@gmail.com
 	signingkey = 39ED98861B403E55
 [core]
-	editor = nano
+	editor = vim
 [commit]
 	gpgsign = false
 [gpg]
