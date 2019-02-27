@@ -1,6 +1,108 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
-    "window.zoomLevel": -1,
+    "cSpell.userWords": [
+        "xaxis",
+        "devops",
+        "deserialization",
+        "bitly",
+        "symlinked",
+        "repo",
+        "repos",
+        "hotfix",
+        "hotfixes",
+        "bugfix",
+        "terraform",
+        "tfvars",
+        "mergeable",
+        "nginx",
+        "autoscaling",
+        "lifecycle",
+        "serverless",
+        "systemd",
+        "userdata",
+        "jinja",
+        "pipfile",
+        "pipenv",
+        "pypi",
+        "direnv",
+        "envrc",
+        "cloudwatch",
+        "kubernetes",
+        "kubeconfig",
+        "datadog",
+        "logfile",
+        "pytest",
+        "conftest",
+        "confs",
+        "hardcoded",
+        "boto",
+        "botocore",
+        "isort",
+        "journald",
+        "systemctl",
+        "stopall",
+        "Elasticache",
+        "templated",
+        "mgmt",
+        "bastion",
+        "motd",
+        "hadoop",
+        "vpcs",
+        "subnet",
+        "subnets",
+        "cphosts",
+        "dynamodb",
+        "xray",
+        "stringify",
+        "tada",
+        "objs",
+        "strftime",
+        "strptime",
+        "sigterm"
+      ],
+
     "workbench.iconTheme": "material-icon-theme",
-    "kite.showTourOnStartup": false
+    "workbench.colorTheme": "Shades of Purple",
+    "material-icon-theme.files.associations": {
+    "*.tf": "terraform"
+    },
+    "window.zoomLevel": 0,
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
+
+    "editor.quickSuggestions": true,
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "editor.tabSize": 2,
+
+    "python.pythonPath": "python3",
+    "[python]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    "python.linting.flake8Enabled": true,
+
+    "files.trimTrailingWhitespace": true,
+    "editor.renderWhitespace": "all",
+
+    // Insert spaces when pressing Tab.
+    "editor.insertSpaces": true,
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
+    "editor.detectIndentation": true,
+
+    "[terraform]": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "terraform.indexing": {
+        "enabled": true,
+        "liveIndexing": true,
+        "delay": 500,
+        "exclude": [
+            ".terraform/**/*",
+            "**/.terraform/**/*"
+        ]
+    },
+    "python.jediEnabled": false,
+    "terminal.integrated.rendererType": "dom",
+    "editor.minimap.enabled": false,
 }

@@ -27,6 +27,6 @@ mas upgrade             # Update apps
 
 # =====================================================
 # Update, clean, check
-brew update; brew upgrade; brew prune; brew cleanup; brew cask cleanup; brew doctor
+brew update; brew upgrade; brew cleanup; brew doctor
 
 echo "Homebrew complete!"

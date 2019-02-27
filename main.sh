@@ -3,44 +3,44 @@
 # NOTE - dotfiles will have to be downloaded manually first
 # =====================================================
 # Homebrew (applications)
-sh brew/brew.sh
+bash brew/brew.sh
 
 # =====================================================
 # OSX settings
-sh env/macos.sh
+bash env/macos.sh
 
 # =====================================================
 # Git settings
-cp ./git/.git-completion.bash ~
-cp ./git/.gitconfig ~
+ln -s $HOME/Documents/dotty/git/.git-completion.bash $HOME/.git-completion.bash
+ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
 
 # =====================================================
 # Atom settings
-cp -r ./.atom ~  && apm install --packages-file ~/.atom/packages.list
+ln -s $HOME/Documents/dotty/.atom $HOME/.atom
+apm install --packages-file $HOME/.atom/packages.list
 
 # =====================================================
 # VS Code settings
-cp -r ./code/User ~/Library/Application\ Support/Code/
-sh ./code/code.sh
+bash ./code/code.sh
 
 # =====================================================
 # Python settings
-# cp -r ./python/.jupyter ~
-sudo pip3 install -r ./python/pip.txt
+pip3 install -r ./python/pip.txt
 
 # =====================================================
 # Hyper.js terminal
-cp -r ./shell/.hyper_plugins ~ && npm --prefix ~/.hyper_plugins install ~/.hyper_plugins
-cp ./shell/.hyper.js ~
+ln -s $HOME/Documents/dotty/shell/.hyper_plugins $HOME/.hyper_plugins
+npm --prefix $HOME/.hyper_plugins install $HOME/.hyper_plugins
+ln -s $HOME/Documents/dotty/shell/.hyper.js $HOME/.hyper.js
 
 # =====================================================
 # Shell settings
 # Note running `sh shell/shell.sh` create a .zshrc file so run before copying over custom .zshrc
-sh ./shell/shell.sh
+bash ./shell/shell.sh
 
-cp ./shell/.bash_profile ~
-cp ./shell/.bashrc ~
-cp ./shell/.zshrc ~
+ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
+ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
+ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
 
 # =====================================================
 # Wakatime api key
