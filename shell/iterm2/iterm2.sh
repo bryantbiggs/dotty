@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Iterm theme
+git clone git@github.com:bhilburn/powerlevel9k.git $HOME/Documents/powerlevel9k
+
 # https://github.com/bhilburn/powerlevel9k/wiki/Install-Instructions
 git clone https://github.com/bhilburn/powerlevel9k.git $HOME/.oh-my-zsh/custom/themes/powerlevel9k
 
