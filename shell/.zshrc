@@ -39,8 +39,8 @@ alias brewup="apm update --c false; brew update; brew outdated; mas upgrade; bre
 # Golang
 
 # Add bin to PATH
-
-export PATH=$PATH:/Users/B2/go/bin
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin
 
 # =====================================================
 # Kubernetes
@@ -111,6 +111,3 @@ export NVM_DIR="$HOME/.nvm"
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/B2/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
