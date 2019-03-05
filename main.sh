@@ -16,8 +16,8 @@ ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
 
 # =====================================================
 # Atom settings
-ln -s $HOME/Documents/dotty/.atom $HOME/.atom
-apm install --packages-file $HOME/.atom/packages.list
+# ln -s $HOME/Documents/dotty/.atom $HOME/.atom
+# apm install --packages-file $HOME/.atom/packages.list
 
 # =====================================================
 # VS Code settings
