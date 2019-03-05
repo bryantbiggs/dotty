@@ -70,7 +70,7 @@ cask "iterm2"
 cask "java"
 cask "kite"
 cask "muzzle"
-cask "mysqlworkbench
+cask "mysqlworkbench"
 cask "onedrive"
 cask "openvisualtraceroute"
 cask "plex-media-server"
