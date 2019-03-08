@@ -62,4 +62,5 @@ code --install-extension WakaTime.vscode-wakatime
 code --install-extension wholroyd.jinja
 code --install-extension zhuangtongfa.Material-theme
 
-ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User2
+rm -rf $HOME/Library/Application\ Support/Code/User
+ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User

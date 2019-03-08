@@ -1,6 +1,5 @@
 {
     "cSpell.userWords": [
-        "xaxis",
         "devops",
         "deserialization",
         "bitly",
@@ -42,7 +41,6 @@
         "stopall",
         "Elasticache",
         "templated",
-        "mgmt",
         "bastion",
         "motd",
         "hadoop",
@@ -53,41 +51,36 @@
         "dynamodb",
         "xray",
         "stringify",
-        "tada",
-        "objs",
         "strftime",
         "strptime",
         "sigterm"
-      ],
-
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Shades of Purple",
+    ],
     "material-icon-theme.files.associations": {
-    "*.tf": "terraform"
+        "*.tf": "terraform"
     },
-    "window.zoomLevel": 0,
     "workbench.startupEditor": "newUntitledFile",
-    "explorer.confirmDelete": false,
-
-    "editor.quickSuggestions": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Furnace",
     "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "terminal.integrated.rendererType": "dom",
+    "window.zoomLevel": 0,
+    "explorer.confirmDelete": false,
+    "editor.quickSuggestions": true,
     "editor.tabSize": 2,
-
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    // Insert spaces when pressing Tab.
+    "editor.insertSpaces": true,
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
+    "editor.detectIndentation": true,
+    "files.trimTrailingWhitespace": true,
     "python.pythonPath": "python3",
     "[python]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 4
     },
     "python.linting.flake8Enabled": true,
-
-    "files.trimTrailingWhitespace": true,
-    "editor.renderWhitespace": "all",
-
-    // Insert spaces when pressing Tab.
-    "editor.insertSpaces": true,
-    // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
-    "editor.detectIndentation": true,
-
+    "python.jediEnabled": false,
     "[terraform]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
@@ -102,7 +95,4 @@
             "**/.terraform/**/*"
         ]
     },
-    "python.jediEnabled": false,
-    "terminal.integrated.rendererType": "dom",
-    "editor.minimap.enabled": false,
 }

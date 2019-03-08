@@ -40,6 +40,7 @@ bash ./shell/shell.sh
 
 ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
 ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
+rm $HOME/.zshrc
 ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
 
 # =====================================================

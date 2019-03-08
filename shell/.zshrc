@@ -86,6 +86,7 @@ plugins=(git docker)
 # source /usr/local/share/antigen/antigen.zsh
 
 source $HOME/.bashrc
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
