@@ -12,7 +12,9 @@ bash env/macos.sh
 
 # =====================================================
 # Git settings
+rm $HOME/.git-completion.bash
 ln -s $HOME/Documents/dotty/git/.git-completion.bash $HOME/.git-completion.bash
+rm $HOME/.gitconfig
 ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
 
 # =====================================================
@@ -30,8 +32,10 @@ pip3 install -r ./python/pip.txt
 
 # =====================================================
 # Hyper.js terminal
+rm -rf $HOME/.hyper_plugins
 ln -s $HOME/Documents/dotty/shell/.hyper_plugins $HOME/.hyper_plugins
 npm --prefix $HOME/.hyper_plugins install $HOME/.hyper_plugins
+rm -rf $HOME/.hyper.js
 ln -s $HOME/Documents/dotty/shell/.hyper.js $HOME/.hyper.js
 
 # =====================================================
@@ -39,15 +43,16 @@ ln -s $HOME/Documents/dotty/shell/.hyper.js $HOME/.hyper.js
 # Note running `sh shell/shell.sh` create a .zshrc file so run before copying over custom .zshrc
 bash ./shell/shell.sh
 
+rm $HOME/{.bash_profile,.bashrc,.zshrc}
 ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
 ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
-rm $HOME/.zshrc
 ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
+ln -s $HOME/Documents/dotty/shell/dark_colors.yaml $HOME/.config/colorls/dark_colors.yaml
 
 # =====================================================
 # Wakatime api key
-ln -s ~/OneDrive/.wakatime.cfg ~/.wakatime.cfg
+ln -s $HOME/OneDrive/.wakatime.cfg $HOME/.wakatime.cfg
 
 # =====================================================
 # All set, source it!
-source ~/.bash_profile
+source $HOME/.bash_profile

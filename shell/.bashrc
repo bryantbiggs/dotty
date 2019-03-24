@@ -20,7 +20,7 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Virtualenvwrapper
-export WORKON_HOME=~/Documents/venvs
+export WORKON_HOME=$HOME/Documents/venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 . /usr/local/bin/virtualenvwrapper.sh
 

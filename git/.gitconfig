@@ -6,10 +6,10 @@
 [user]
 	name = Bryant Biggs
 	email = bryantbiggs@gmail.com
-	signingkey = 39ED98861B403E55
+	username = bryantbiggs
 [core]
 	editor = vim
-[commit]
-	gpgsign = false
-[gpg]
-	program = gnupg
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
+[github]
+	user = bryantbiggs

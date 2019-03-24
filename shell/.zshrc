@@ -1,6 +1,7 @@
 # =====================================================
 
 # Misc
+alias ocat'cat'
 alias cat='bat'
 
 # Network
@@ -34,6 +35,19 @@ alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
 alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
+
+# =====================================================
+# colorls
+
+# Enable tab completion of flags
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+# Base formats
+alias lc='colorls -la'
+alias lcd='colorls --dirs -la'
+alias lcf='colorls --files -la'
+alias lcsd='colorls --sort-dirs -la'
+alias lcsf='colorls --sort-files -la'
 
 # =====================================================
 # Golang
@@ -107,7 +121,3 @@ fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

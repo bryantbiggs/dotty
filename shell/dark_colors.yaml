@@ -1,0 +1,39 @@
+# Main Colors
+unrecognized_file: blue
+recognized_file:   lime
+dir:               purple
+
+# Link
+dead_link: red
+link:      cyan 
+
+# Access Modes
+read:      darkviolet
+write:     purple
+exec:      deeppink 
+no_access: plum
+
+# Age
+day_old:     mediumspringgreen
+hour_old:    lime
+no_modifier: seagreen
+
+# File Size
+file_large:  orangered
+file_medium: orange
+file_small:  gold
+
+# Random
+report: white
+user:   mediumspringgreen
+tree:   cyan
+empty:  yellow
+error:  red
+normal: springgreen
+
+# Git
+addition:     chartreuse
+modification: darkkhaki
+deletion:     darkred
+untracked:    darkorange
+unchanged:    forestgreen
