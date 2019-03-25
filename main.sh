@@ -12,9 +12,8 @@ bash env/macos.sh
 
 # =====================================================
 # Git settings
-rm $HOME/.git-completion.bash
+rm $HOME/{.git-completion.bash,.gitconfig}
 ln -s $HOME/Documents/dotty/git/.git-completion.bash $HOME/.git-completion.bash
-rm $HOME/.gitconfig
 ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
 
 # =====================================================
@@ -32,10 +31,9 @@ pip3 install -r ./python/pip.txt
 
 # =====================================================
 # Hyper.js terminal
-rm -rf $HOME/.hyper_plugins
+rm -rf $HOME/{.hyper_plugins,.hyper.js}
 ln -s $HOME/Documents/dotty/shell/.hyper_plugins $HOME/.hyper_plugins
 npm --prefix $HOME/.hyper_plugins install $HOME/.hyper_plugins
-rm -rf $HOME/.hyper.js
 ln -s $HOME/Documents/dotty/shell/.hyper.js $HOME/.hyper.js
 
 # =====================================================
@@ -47,6 +45,7 @@ rm $HOME/{.bash_profile,.bashrc,.zshrc}
 ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
 ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
 ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
+mkdir -p $HOME/.config/colorls
 ln -s $HOME/Documents/dotty/shell/dark_colors.yaml $HOME/.config/colorls/dark_colors.yaml
 
 # =====================================================
