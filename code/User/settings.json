@@ -67,6 +67,8 @@
     "workbench.colorTheme": "Shades of Purple",
     "terminal.integrated.fontFamily": "Hack Nerd Font",
     "terminal.integrated.rendererType": "dom",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.shell.osx": "zsh",
     "window.zoomLevel": 0,
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": true,
