@@ -1,6 +1,10 @@
 {
     "cSpell.userWords": [
-        "devops",
+        "functools",
+	"argspec",
+	"getfullargspec",
+    "devops",
+        "hmac",
         "deserialization",
         "bitly",
         "symlinked",
@@ -60,7 +64,7 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Furnace",
+    "workbench.colorTheme": "Shades of Purple",
     "terminal.integrated.fontFamily": "Hack Nerd Font",
     "terminal.integrated.rendererType": "dom",
     "window.zoomLevel": 0,
@@ -94,5 +98,10 @@
             ".terraform/**/*",
             "**/.terraform/**/*"
         ]
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
     },
 }

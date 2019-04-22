@@ -4,13 +4,6 @@
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/${USER}/.zshrc'
 
-# ? (can't remember)
-autoload -Uz compinit
-compinit
-
-# Pure prompt
-autoload -U promptinit; promptinit
-
 # Zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
