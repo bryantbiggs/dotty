@@ -10,3 +10,6 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 # Colorls
 sudo gem install colorls
 mkdir -p $HOME/.config/Colorls
+
+# Silence last login
+touch $HOME/.hushlogin
