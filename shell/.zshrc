@@ -1,5 +1,3 @@
-# =====================================================
-
 # Misc
 alias ocat'cat'
 alias cat='bat'
@@ -128,12 +126,3 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/bryantbiggs/Documents/security-bot/elevated_access/node_modules/tabtab/.completions/slss.zsh
