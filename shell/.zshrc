@@ -65,6 +65,9 @@ alias kdp='kubectl describe pods'
 alias kds='kubectl describe services'
 alias kdn='kubectl describe nodes'
 
+# EKS login
+alias eks_login='aws eks update-kubeconfig --name $1'
+
 # =====================================================
 # HomeBrew
 export PATH="/usr/local/sbin:$PATH"
