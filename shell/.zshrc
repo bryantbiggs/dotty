@@ -13,6 +13,13 @@ alias ag='ansible-galaxy'
 # Docker
 alias dclean='docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)'
 
+# Google cloud platform
+alias g='gcloud'
+alias gl='gcloud components list'
+alias ga='gcloud auth login --no-launch-browser'
+alias gp='gcloud projects list'
+alias gsp='gcloud config set project'
+
 # Terraform
 alias tf='terraform'
 
@@ -101,7 +108,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(docker)
 
 # Antigen for zsh shell
 # source /usr/local/share/antigen/antigen.zsh
@@ -129,3 +136,8 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then . 'google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then . 'google-cloud-sdk/completion.zsh.inc'; fi

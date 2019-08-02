@@ -1,28 +1,16 @@
 #!/bin/bash
 
-# =====================================================
-# ----- Homebrew
-
 # Brew path
 export PATH="/usr/local/bin:$PATH"
 
 # Brew coreutils
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
-# =====================================================
-# ----- Golang
+# krew - k8s package manager
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# export GOPATH=$HOME/go_workspace
-# export GOROOT=/usr/local/opt/go/libexec
-# export PATH=$PATH:$GOPATH/bin
-# export PATH=$PATH:$GOROOT/bin
-
-# =====================================================
-# ----- NPM Global packages
-
-# export PATH="$HOME/.npm-packages/bin:$PATH"
+# rust cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Activate ZSH shell
 exec zsh
-
-export PATH="$HOME/.cargo/bin:$PATH"
