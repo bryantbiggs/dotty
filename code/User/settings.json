@@ -115,4 +115,7 @@
     "[json]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
 }
