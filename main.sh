@@ -20,12 +20,6 @@ bash ./code/code.sh
 # Python settings
 pip3 install -r ./python/pip.txt
 
-# Hyper.js terminal
-rm -rf $HOME/{.hyper_plugins,.hyper.js}
-ln -s $HOME/Documents/dotty/shell/.hyper_plugins $HOME/.hyper_plugins
-npm --prefix $HOME/.hyper_plugins install $HOME/.hyper_plugins
-ln -s $HOME/Documents/dotty/shell/.hyper.js $HOME/.hyper.js
-
 # Shell settings
 # Note running `sh shell/shell.sh` create a .zshrc file so run before copying over custom .zshrc
 bash ./shell/shell.sh

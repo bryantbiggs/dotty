@@ -16,7 +16,6 @@ brew bundle --file="./brew/Brewfile"
 
 # =====================================================
 # Install App Store apps
-mas signin --dialog bryantbiggs@gmail.com
 mas install 1091189122  # Bear
 mas install 411246225   # Caffeine
 mas install 504544917   # Clear
