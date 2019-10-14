@@ -8,7 +8,7 @@ rpm-ostree install rpmfusion-nonfree-release
 rpm-ostree install make fedora-workstation-repositories gnome-tweaks flat-remix-theme gnome-shell-extension-dash-to-dock gnome-shell-extension-user-theme
 
 # Video codecs/drivers
-rpm-ostree install gstreamer1-libav gstreamer1-plugins-ugly unrar compat-ffmpeg28 ffmpeg-libs
+rpm-ostree install gstreamer1-libav gstreamer1-plugins-ugly unrar compat-ffmpeg28 ffmpeg-libs ruby
 
 # NVIDIA drivers - https://rpmfusion.org/Howto/NVIDIA
 rpm-ostree install akmod-nvidia xorg-x11-drv-nvidia 

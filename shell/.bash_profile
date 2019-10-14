@@ -4,7 +4,9 @@
 export PATH="/usr/local/bin:$PATH"
 
 # Brew coreutils
-export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+fi
 
 # krew - k8s package manager
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
