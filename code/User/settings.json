@@ -78,7 +78,7 @@
     "terminal.integrated.rendererType": "dom",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "zsh",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": true,
     "editor.tabSize": 2,
@@ -118,4 +118,7 @@
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
 }
