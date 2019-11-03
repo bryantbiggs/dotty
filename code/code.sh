@@ -1,66 +1,35 @@
 #!/bin/bash
 
 # Install extensions
-# To generate => code --install-extension ahmadawais.shades-of-purple
-code --install-extension akamud.vscode-theme-onedark
-code --install-extension azemoh.theme-onedark
-code --install-extension batisteo.vscode-django
-code --install-extension brenosolutions.sqlformatter
-code --install-extension donjayamanne.jupyter
-code --install-extension donjayamanne.python-extension-pack
-code --install-extension dunstontc.vscode-rust-syntax
-code --install-extension hnw.vscode-auto-open-markdown-preview
-code --install-extension HookyQR.beautify
-code --install-extension magicstack.MagicPython
-code --install-extension mauve.terraform
-code --install-extension mohsen1.prettify-json
-code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-code --install-extension ms-python.python
-code --install-extension octref.vetur
-code --install-extension oderwat.indent-rainbow
-code --install-extension p1c2u.docker-compose
-code --install-extension PeterJausovec.vscode-docker
-code --install-extension PKief.material-icon-theme
-code --install-extension redhat.vscode-yaml
-code --install-extension rust-lang.rust
-code --install-extension seansassenrath.vscode-theme-superonedark
-code --install-extension shardulm94.trailing-spaces
-code --install-extension solomonsscott.furnace
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension VisualStudioExptTeam.vscodeintellicode
-code --install-extension WakaTime.vscode-wakatime
-code --install-extension wholroyd.jinja
-code --install-extension zhuangtongfa.Material-theme
+# To generate => for EXT in $(code --list-extensions); do echo "code --install-extension $EXT"; done;
+
 code --install-extension ahmadawais.shades-of-purple
-code --install-extension akamud.vscode-theme-onedark
-code --install-extension azemoh.theme-onedark
-code --install-extension batisteo.vscode-django
-code --install-extension brenosolutions.sqlformatter
-code --install-extension donjayamanne.jupyter
-code --install-extension donjayamanne.python-extension-pack
-code --install-extension dunstontc.vscode-rust-syntax
+code --install-extension aws-scripting-guy.cform
+code --install-extension bungcip.better-toml
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension dsteenman.cloudformation-yaml-snippets
+code --install-extension erd0s.terraform-autocomplete
+code --install-extension esbenp.prettier-vscode
+code --install-extension henriiik.docker-linter
 code --install-extension hnw.vscode-auto-open-markdown-preview
 code --install-extension HookyQR.beautify
-code --install-extension magicstack.MagicPython
+code --install-extension kalitaalexey.vscode-rust
+code --install-extension matklad.ra-lsp
 code --install-extension mauve.terraform
-code --install-extension mohsen1.prettify-json
+code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
+code --install-extension ms-vscode.Go
 code --install-extension octref.vetur
-code --install-extension oderwat.indent-rainbow
-code --install-extension p1c2u.docker-compose
-code --install-extension PeterJausovec.vscode-docker
 code --install-extension PKief.material-icon-theme
 code --install-extension redhat.vscode-yaml
-code --install-extension rust-lang.rust
-code --install-extension seansassenrath.vscode-theme-superonedark
-code --install-extension shardulm94.trailing-spaces
+code --install-extension serayuzgur.crates
 code --install-extension solomonsscott.furnace
-code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension TabNine.tabnine-vscode
+code --install-extension vadimcn.vscode-lldb
 code --install-extension WakaTime.vscode-wakatime
-code --install-extension wholroyd.jinja
-code --install-extension zhuangtongfa.Material-theme
+code --install-extension wix.vscode-import-cost
 
 rm -rf $HOME/Library/Application\ Support/Code/User
 ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User
