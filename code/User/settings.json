@@ -5,7 +5,6 @@
         "parametrize",
         "secretsmanager",
         "dockerize",
-        "frameio",
         "createdby",
         "appr",
         "arns",
@@ -74,16 +73,14 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Shades of Purple",
-    "terminal.integrated.fontFamily": "Hack Nerd Font",
     "terminal.integrated.rendererType": "dom",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "zsh",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": true,
     "editor.tabSize": 2,
     "editor.renderWhitespace": "all",
-    "editor.minimap.enabled": false,
     // Insert spaces when pressing Tab.
     "editor.insertSpaces": true,
     // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
@@ -118,4 +115,8 @@
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.fontSize": 16,
 }
