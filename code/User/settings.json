@@ -76,7 +76,6 @@
     "terminal.integrated.rendererType": "dom",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "zsh",
-    "window.zoomLevel": -1,
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": true,
     "editor.tabSize": 2,

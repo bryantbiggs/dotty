@@ -1,6 +1,5 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 # Symlink settings from dotty repo
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     rm -rf /var/home/bryantbiggs/.config/Code/User
@@ -9,7 +8,7 @@ else
     rm -rf $HOME/Library/Application\ Support/Code/User
     ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User
 fi
-=======
+
 # Install extensions
 # To generate => for EXT in $(code --list-extensions); do echo "code --install-extension $EXT"; done;
 
@@ -40,7 +39,3 @@ code --install-extension TabNine.tabnine-vscode
 code --install-extension vadimcn.vscode-lldb
 code --install-extension WakaTime.vscode-wakatime
 code --install-extension wix.vscode-import-cost
-
-rm -rf $HOME/Library/Application\ Support/Code/User
-ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User
->>>>>>> c2780c407fcac88da25e869a3a670e93f419aa69
