@@ -2,8 +2,8 @@
 
 # Symlink settings from dotty repo
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    rm -rf /var/home/bryantbiggs/.config/Code/User
-    ln -s $HOME/Documents/dotty/code/User /var/home/bryantbiggs/.config/Code/User
+        rm -rf $HOME/.config/Code/User
+        ln -s $HOME/Documents/dotty/code/User $HOME/.config/Code/User
 else
     rm -rf $HOME/Library/Application\ Support/Code/User
     ln -s $HOME/Documents/dotty/code/User $HOME/Library/Application\ Support/Code/User

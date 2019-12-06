@@ -76,12 +76,8 @@ alias kdn='kubectl describe nodes'
 alias eks_login='aws eks update-kubeconfig --name $1'
 
 # =====================================================
-# HomeBrew
-export PATH="/usr/local/sbin:$PATH"
 
-# =====================================================
-
-# Autocompletion 
+# Autocompletion
 
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
@@ -94,7 +90,7 @@ eval "$(direnv hook zsh)"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/${USER}/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -115,7 +111,7 @@ plugins=(docker)
 
 source $HOME/.bashrc
 ZSH_DISABLE_COMPFIX=true
-source $ZSH/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Nerd font
@@ -141,3 +137,5 @@ if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then . 'google-cloud-sdk/path.zsh.inc
 
 # The next line enables shell command completion for gcloud.
 if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then . 'google-cloud-sdk/completion.zsh.inc'; fi
+
+echo "ZSHRC"
