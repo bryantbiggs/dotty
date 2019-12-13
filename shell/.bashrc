@@ -23,14 +23,14 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Pyenv
-export PATH="/home/bryantbiggs/.pyenv/bin:$PATH"
+export PATH="${HOME}/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # Virtualenvwrapper
 export WORKON_HOME=$HOME/Documents/venvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-# source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh || true
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

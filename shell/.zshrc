@@ -23,9 +23,6 @@ alias gsp='gcloud config set project'
 # Terraform
 alias tf='terraform'
 
-# Heptio Authenticator AWS (EKS)
-alias hauth='heptio-authenticator-aws'
-
 # Clean Apple's crap
 alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
 
@@ -138,4 +135,3 @@ if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then . 'google-cloud-sdk/path.zsh.inc
 # The next line enables shell command completion for gcloud.
 if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then . 'google-cloud-sdk/completion.zsh.inc'; fi
 
-echo "ZSHRC"

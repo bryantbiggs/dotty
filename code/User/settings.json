@@ -118,4 +118,5 @@
         "editor.defaultFormatter": "HookyQR.beautify"
     },
     "editor.fontSize": 16,
+    "window.zoomLevel": -1,
 }
