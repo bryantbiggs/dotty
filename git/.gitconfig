@@ -13,3 +13,5 @@
 	excludesfile = ~/.gitignore
 [github]
 	user = bryantbiggs
+[init]
+	templateDir = /home/bryantbiggs/.git-template

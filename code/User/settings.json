@@ -83,7 +83,6 @@
     "terminal.integrated.lineHeight": 1.3,
 
     "editor.suggestSelection": "first",
-    "editor.fontSize": 16,
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": true,
     "editor.tabSize": 2,
@@ -128,5 +127,17 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": "HookyQR.beautify"
-    }
+    },
+    "editor.fontSize": 12,
+    "editor.wordWrapColumn": 120,
+    "[vue]": {
+        "editor.defaultFormatter": "octref.vetur"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "yaml.format.singleQuote": true
 }
