@@ -28,6 +28,7 @@ rm $HOME/{.bash_profile,.bashrc,.zshrc}
 ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
 ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
 ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
+ln -s $HOME/Documents/dotty/shell/.zprofile $HOME/.zprofile
 mkdir -p $HOME/.config/colorls
 ln -s $HOME/Documents/dotty/shell/dark_colors.yaml $HOME/.config/colorls/dark_colors.yaml
 

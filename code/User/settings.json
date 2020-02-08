@@ -70,10 +70,13 @@
     "material-icon-theme.files.associations": {
         "*.tf": "terraform"
     },
+    "terminal.integrated.fontFamily": "'Source Code Pro for Powerline', 'Hack Nerd Font'",
+    "terminal.integrated.rendererType": "canvas",
+    "terminal.integrated.lineHeight": 1.3,
+    // "terminal.integrated.rendererType": "dom",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Shades of Purple",
-    "terminal.integrated.rendererType": "dom",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "zsh",
     "explorer.confirmDelete": false,
@@ -107,7 +110,6 @@
         ]
     },
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "[json]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },

@@ -1,13 +1,9 @@
 autoflake
 autopep8
-awscli
 black
-boto3
-click
 coverage
 flake8
 flake8-polyfill
-Flask
 gprof2dot
 graphviz
 ipykernel
@@ -30,7 +26,6 @@ pipdeptree
 pycodestyle
 pydocstyle
 pyflakes
-PyGithub
 Pygments
 pylama
 pylama-pylint
@@ -39,7 +34,4 @@ pytest
 pytest-cov
 pytest-xdist
 radon
-s3fs
-s3transfer
-Sphinx
 virtualenvwrapper
