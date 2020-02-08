@@ -114,8 +114,22 @@
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
-    "[javascript]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+    "editor.formatOnPaste": true,
+    "editor.fontSize": 14,
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.fontSize": 16,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.preferences.quoteStyle": "single",
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "yaml.format.singleQuote": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "window.zoomLevel": -1,
 }

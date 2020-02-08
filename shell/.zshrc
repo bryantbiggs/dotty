@@ -4,7 +4,6 @@ alias cat='bat'
 
 # Network
 alias ns='dig +short NS'
-alias tr='sudo tcptraceroute'
 
 # Ansible
 alias ap='ansible-playbook'
@@ -81,7 +80,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 # =====================================================
 
-# Autocompletion 
+# Autocompletion
 
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
@@ -141,3 +140,5 @@ if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then . 'google-cloud-sdk/path.zsh.inc
 
 # The next line enables shell command completion for gcloud.
 if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then . 'google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH="/usr/local/opt/ruby/bin:$PATH"

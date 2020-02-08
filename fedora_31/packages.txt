@@ -1,1 +1,0 @@
-fedora-workstation-repositories flat-remix-theme flatpack glib2-devel gnome-shell-extension-dash-to-dock gnome-shell-extension-user-theme gnome-tweaks make
