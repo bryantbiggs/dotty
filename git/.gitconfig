@@ -14,4 +14,4 @@
 [github]
 	user = bryantbiggs
 [init]
-	templateDir = /Users/bryantbiggs/.git-template
+	templateDir = ~/.git-template

@@ -7,10 +7,12 @@ $HOME/.cargo/bin:\
 /usr/local/opt/ruby/bin:"
 
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
+PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 # Brew coreutils
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-#   PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
-# fi
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
+fi
 
 # Add the default directories AFTER the above (+=)
 PATH+=":/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Iterm theme
 git clone git@github.com:bhilburn/powerlevel9k.git $HOME/Documents/powerlevel9k
@@ -9,7 +9,6 @@ git clone https://github.com/bhilburn/powerlevel9k.git $HOME/.oh-my-zsh/custom/t
 # https://github.com/ryanoasis/nerd-fonts
 NERD_FONT_DIR=$HOME/Documents/nerd-fonts
 git clone git@github.com:ryanoasis/nerd-fonts.git $NERD_FONT_DIR
-
 cd $NERD_FONT_DIR && ./install.sh Hack
 
 # http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
