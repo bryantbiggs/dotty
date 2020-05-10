@@ -92,7 +92,7 @@
     // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
     "editor.detectIndentation": true,
 
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
     "markdown.preview.fontFamily": "'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif",
 
     "files.trimTrailingWhitespace": true,

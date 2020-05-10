@@ -1,6 +1,6 @@
 # Misc
-alias ocat'cat'
-alias cat='bat'
+#alias ocat'cat'
+#alias cat='bat'
 
 # Network
 alias ns='dig +short NS'
