@@ -16,7 +16,12 @@ brew bundle --file="./brew/Brewfile"
 
 # =====================================================
 # Install App Store apps
+
+mas install 937984704   # Amphetamine
 mas install 1091189122  # Bear
+mas install 441258766   # Magnet
+mas install 425955336   # Skitch
+mas install 497799835   # Xcode
 mas upgrade             # Update apps
 
 # =====================================================
