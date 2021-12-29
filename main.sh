@@ -11,9 +11,6 @@ rm $HOME/{.git-completion.bash,.gitconfig}
 ln -s $HOME/Documents/dotty/git/.git-completion.bash $HOME/.git-completion.bash
 ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
 
-# Kubernetes settings
-bash ./kubernetes/k8s.sh
-
 # VS Code settings
 bash ./code/code.sh
 

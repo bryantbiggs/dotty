@@ -17,11 +17,6 @@ brew bundle --file="./brew/Brewfile"
 # =====================================================
 # Install App Store apps
 mas install 1091189122  # Bear
-mas install 411246225   # Caffeine
-mas install 504544917   # Clear
-mas install 441258766   # Magnet
-mas install 512617038   # Snappy
-mas install 1176895641  # Spark
 mas upgrade             # Update apps
 
 # =====================================================
