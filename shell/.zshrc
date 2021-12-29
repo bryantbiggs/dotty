@@ -1,13 +1,9 @@
 # Clear path - clean slate
-unset path
+unset PATH
 
 # List all path entries before the "standard" PATH
-PATH="\
-$HOME/.cargo/bin:\
-/usr/local/opt/ruby/bin:"
-
+PATH="$HOME/.cargo/bin:/usr/local/opt/ruby/bin:"
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
-PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Brew coreutils
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -15,10 +11,23 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Add the default directories AFTER the above (+=)
-PATH+=":/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# Run commands that modify the first entries in path
+# Golang
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # Clean up possible duplicates in path and export
 typeset -aU path
@@ -28,17 +37,6 @@ export MANPATH=$(manpath)
 # Misc
 alias ocat'cat'
 alias cat='bat'
-
-# Ansible
-alias ap='ansible-playbook'
-alias ag='ansible-galaxy'
-
-# Google cloud platform
-alias g='gcloud'
-alias gl='gcloud components list'
-alias ga='gcloud auth login --no-launch-browser'
-alias gp='gcloud projects list'
-alias gsp='gcloud config set project'
 
 # Terraform
 alias tf='terraform'
@@ -53,15 +51,15 @@ alias tfs='terraform workspace select'
 alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports  --remove-unused-variables .'
 
 # Clean commands
-alias tfclean='find . | grep -E "(.terraform)" | xargs rm -rf'
+alias tfclean='find . | grep -E "(\.terraform|\.terraform.lock.hcl|\.terraform.tfstate*)" | xargs rm -rf'
 alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$|\.pytest_cache)" | xargs rm -rf'
 alias jsclean='find . | grep -E "(node_modules|\.serverless|package-lock.json|yarn.lock|dist)" | xargs rm -rf'
-alias dclean='docker rmi -f $(docker images --filter "dangling=true" -q --no-trunc)'
+alias dclean='docker image prune -a && docker container prune'
 alias runclean='dsclean; pyclean'
 
 # HomeBrew
-alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew' # suppres config warnings
+# alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew' # suppres config warnings
 alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
 
 # colorls
@@ -92,32 +90,14 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then
-  . 'google-cloud-sdk/path.zsh.inc'
-fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then
-  . 'google-cloud-sdk/completion.zsh.inc'
-fi
-
-# Virtualenvwrapper
-if [ -f '/usr/local/bin/virtualenvwrapper.sh' ]; then
-  export WORKON_HOME=$HOME/Documents/venvs
-  export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-  . /usr/local/bin/virtualenvwrapper.sh
-fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # awscli autocompletion
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Activate direnv
 eval "$(direnv hook zsh)"
+
+# Starship
+eval "$(starship init zsh)"
 
 # Nerd font
 alias ls='ls -G'
