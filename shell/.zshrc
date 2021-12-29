@@ -99,6 +99,9 @@ eval "$(direnv hook zsh)"
 # Starship
 eval "$(starship init zsh)"
 
+# Zoxide
+eval "$(zoxide init posix --hook prompt)"
+
 # Nerd font
 alias ls='ls -G'
 POWERLEVEL9K_MODE='nerdfont-complete'

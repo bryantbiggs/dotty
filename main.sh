@@ -7,9 +7,9 @@ bash brew/brew.sh
 bash env/macos.sh
 
 # Git settings
-rm $HOME/{.git-completion.bash,.gitconfig}
-ln -s $HOME/Documents/dotty/git/.git-completion.bash $HOME/.git-completion.bash
-ln -s $HOME/Documents/dotty/git/.gitconfig $HOME/.gitconfig
+rm ~/{.git-completion.bash,.gitconfig}
+ln -s ~/Documents/dotty/git/.git-completion.bash ~/.git-completion.bash
+ln -s ~/Documents/dotty/git/.gitconfig ~/.gitconfig
 
 # VS Code settings
 bash ./code/code.sh
@@ -21,16 +21,16 @@ pip3 install -r ./python/pip.txt
 # Note running `sh shell/shell.sh` create a .zshrc file so run before copying over custom .zshrc
 bash ./shell/shell.sh
 
-rm $HOME/{.bash_profile,.bashrc,.zshrc}
-ln -s $HOME/Documents/dotty/shell/.bash_profile $HOME/.bash_profile
-ln -s $HOME/Documents/dotty/shell/.bashrc $HOME/.bashrc
-ln -s $HOME/Documents/dotty/shell/.zshrc $HOME/.zshrc
-ln -s $HOME/Documents/dotty/shell/.zprofile $HOME/.zprofile
-mkdir -p $HOME/.config/colorls
-ln -s $HOME/Documents/dotty/shell/dark_colors.yaml $HOME/.config/colorls/dark_colors.yaml
+rm ~/{.bash_profile,.bashrc,.zshrc}
+ln -s ~/Documents/dotty/shell/.bash_profile ~/.bash_profile
+ln -s ~/Documents/dotty/shell/.bashrc ~/.bashrc
+ln -s ~/Documents/dotty/shell/.zshrc ~/.zshrc
+ln -s ~/Documents/dotty/shell/.zprofile ~/.zprofile
+mkdir -p ~/.config/colorls
+ln -s ~/Documents/dotty/shell/dark_colors.yaml ~/.config/colorls/dark_colors.yaml
 
 # Wakatime api key
-ln -s $HOME/OneDrive/.wakatime.cfg $HOME/.wakatime.cfg
+ln -s ~/OneDrive/.wakatime.cfg ~/.wakatime.cfg
 
 # All set, source it!
-source $HOME/.bash_profile
+source ~/.bash_profile
