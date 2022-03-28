@@ -46,10 +46,13 @@
         "hostnames",
         "hotfix",
         "hotfixes",
+        "IPAM",
         "irsa",
         "isort",
         "jinja",
         "journald",
+        "karpenter",
+        "khuylo",
         "kube",
         "kubeconfig",
         "kubectl",
@@ -98,7 +101,7 @@
     "material-icon-theme.files.associations": {
         "*.tf": "terraform"
     },
-    "terminal.integrated.fontFamily": "'Source Code Pro for Powerline', 'Hack Nerd Font'",
+    "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.rendererType": "canvas",
     "terminal.integrated.lineHeight": 1.3,
     // "terminal.integrated.rendererType": "dom",
@@ -192,4 +195,11 @@
     "yaml.schemas": {},
     "svelte.enable-ts-plugin": true,
     "python.languageServer": "Default",
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": false,
+        "markdown": true
+    },
 }

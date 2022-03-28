@@ -6,6 +6,7 @@ PATH="$HOME/.cargo/bin:/usr/local/opt/ruby/bin:"
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 
 # Brew coreutils
+eval "$(/opt/homebrew/bin/brew shellenv)"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 fi
@@ -119,3 +120,4 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
 
 source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
+PATH="/usr/local/bin:$PATH"
