@@ -1,15 +1,8 @@
 # Clear path - clean slate
 unset PATH
 
-# List all path entries before the "standard" PATH
-PATH="$HOME/.cargo/bin:/usr/local/opt/ruby/bin:"
-PATH=$PATH:$(ruby -e 'puts Gem.bindir')
-
 # Brew coreutils
 eval "$(/opt/homebrew/bin/brew shellenv)"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
-fi
 
 # Add the default directories AFTER the above (+=)
 PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -91,17 +84,8 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# awscli autocompletion
-complete -C '/usr/local/bin/aws_completer' aws
-
 # Activate direnv
 eval "$(direnv hook zsh)"
-
-# Starship
-eval "$(starship init zsh)"
-
-# Zoxide
-eval "$(zoxide init posix --hook prompt)"
 
 # Nerd font
 alias ls='ls -G'
@@ -120,4 +104,3 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
 
 source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
-PATH="/usr/local/bin:$PATH"
