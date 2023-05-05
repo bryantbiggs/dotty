@@ -15,3 +15,4 @@
 	user = bryantbiggs
 [init]
 	templateDir = /home/bryantbiggs/.git-template
+	defaultBranch = main

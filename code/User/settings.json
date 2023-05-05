@@ -84,22 +84,25 @@
 
     "editor.suggestSelection": "first",
     "explorer.confirmDelete": false,
-    "editor.quickSuggestions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    },
     "editor.tabSize": 2,
     "editor.renderWhitespace": "all",
     // Insert spaces when pressing Tab.
     "editor.insertSpaces": true,
     // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
     "editor.detectIndentation": true,
-
-    "window.zoomLevel": 1,
     "markdown.preview.fontFamily": "'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif",
 
     "files.trimTrailingWhitespace": true,
     "python.pythonPath": "python3",
     "[python]": {
         "editor.insertSpaces": true,
-        "editor.tabSize": 4
+        "editor.tabSize": 4,
+        "editor.formatOnType": true
     },
     "python.linting.flake8Enabled": true,
     "python.jediEnabled": false,
@@ -120,7 +123,7 @@
 
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "[json]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
@@ -139,5 +142,36 @@
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "yaml.format.singleQuote": true
+    "yaml.format.singleQuote": true,
+    "tabnine.experimentalAutoImports": true,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "python.languageServer": "Default",
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "redhat.telemetry.enabled": true,
+    "python.defaultInterpreterPath": "python3",
+    "extensions.ignoreRecommendations": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "svelte.enable-ts-plugin": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": true,
+        "plaintext": false,
+        "markdown": true
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "svelte.plugin.svelte.note-new-transformation": false,
+    "npm.keybindingsChangedWarningShown": true,
+    "window.zoomLevel": 1
 }

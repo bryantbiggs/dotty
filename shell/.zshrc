@@ -1,7 +1,3 @@
-# Misc
-#alias ocat'cat'
-#alias cat='bat'
-
 # Network
 alias ns='dig +short NS'
 
@@ -20,22 +16,29 @@ alias gp='gcloud projects list'
 alias gsp='gcloud config set project'
 
 # Terraform
+# Terraform
 alias tf='terraform'
+alias tfi='terraform init -upgrade'
+alias tfp='terraform plan'
+alias tfl='terraform state list'
+alias tfo='terraform output'
+alias tfw='terraform workspace list'
+alias tfs='terraform workspace select'
 
-# Clean Apple's crap
+# export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+
+alias tfclean='find . | grep -E "(\.terraform|\.tfsec|\.terraform.lock.hcl|\.terraform.tfstate*)" | xargs rm -rf'
 alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
-
-# Clean up python generated files
 alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$|\.pytest_cache)" | xargs rm -rf'
-
-# Autoflake the shit out of that directory
-alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports  --remove-unused-variables .'
-
-# Run all clean commands
+alias jsclean='find . | grep -E "(node_modules|\.serverless|package-lock.json|yarn.lock|dist)" | xargs rm -rf'
+alias dclean='docker image prune -a && docker container prune'
 alias runclean='dsclean; pyclean'
 
 # Brew all the things!!!
 alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
+
+# Pyenv
+eval "$(pyenv init -)";
 
 # =====================================================
 # colorls
@@ -53,9 +56,12 @@ alias lcsf='colorls --sort-files -la'
 # =====================================================
 # Golang
 
-# Add bin to PATH
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
+# goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 
 # =====================================================
 # Kubernetes
@@ -128,9 +134,7 @@ fi
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f 'google-cloud-sdk/path.zsh.inc' ]; then . 'google-cloud-sdk/path.zsh.inc'; fi
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin
 
-# The next line enables shell command completion for gcloud.
-if [ -f 'google-cloud-sdk/completion.zsh.inc' ]; then . 'google-cloud-sdk/completion.zsh.inc'; fi
-
+export PATH="$HOME/.poetry/bin:$PATH"

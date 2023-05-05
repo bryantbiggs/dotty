@@ -12,7 +12,7 @@ fi
 # ----- ZSH
 
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/${USER}/.zshrc'
+# zstyle :compinstall filename '/Users/${USER}/.zshrc'
 
 # Zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -39,8 +39,11 @@ export NVM_DIR="$HOME/.nvm"
 # awscli autocompletion
 complete -C '/usr/local/bin/aws_completer' aws
 
-# krew - k8s package manager
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 # rust cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Goenv
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
+
