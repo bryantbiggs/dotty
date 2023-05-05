@@ -181,7 +181,6 @@
     // "terminal.integrated.rendererType": "dom",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Shades of Purple",
     "terminal.external.osxExec": "iTerm.app",
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": {
@@ -281,11 +280,11 @@
     },
     "go.toolsManagement.autoUpdate": true,
     "svelte.plugin.svelte.note-new-transformation": false,
-    "window.zoomLevel": -2,
     "cSpell.languageSettings": [
 
     ],
     "cSpell.checkOnlyEnabledFileTypes": false,
         "plaintext": false,
-        "markdown": true
+        "markdown": true,
+        "workbench.colorTheme": "Shades of Purple"
 }
