@@ -9,9 +9,7 @@ PATH="$HOME/.cargo/bin:/usr/local/opt/ruby/bin:"
 PATH=$PATH:$(ruby -e 'puts Gem.bindir')
 
 # Brew coreutils
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Add the default directories AFTER the above (+=)
 PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -90,9 +88,6 @@ alias eks_login='aws eks update-kubeconfig --name $1'
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
-
-# awscli autocompletion
-complete -C '/usr/local/bin/aws_completer' aws
 
 # Activate direnv
 eval "$(direnv hook zsh)"

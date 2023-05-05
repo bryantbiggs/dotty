@@ -183,7 +183,6 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Shades of Purple",
     "terminal.external.osxExec": "iTerm.app",
-    "terminal.integrated.shell.osx": "zsh",
     "explorer.confirmDelete": false,
     "editor.quickSuggestions": {
         "comments": "on",
@@ -287,4 +286,6 @@
 
     ],
     "cSpell.checkOnlyEnabledFileTypes": false,
+        "plaintext": false,
+        "markdown": true
 }

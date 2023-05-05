@@ -12,17 +12,21 @@ brew update; brew upgrade
 # =====================================================
 # Install apps listed in Brewfile
 echo "Downloading and installing apps..."
-brew bundle --file="./brew/Brewfile"
+brew bundle --file="./Brewfile"
 
 # =====================================================
 # Install App Store apps
 
-mas install 937984704   # Amphetamine
-mas install 1091189122  # Bear
-mas install 441258766   # Magnet
-mas install 425955336   # Skitch
-mas install 497799835   # Xcode
-mas upgrade             # Update apps
+# Amphetamine
+mas install 937984704
+# Bear
+mas install 1091189122
+# Magnet
+mas install 441258766
+# Xcode
+mas install 497799835
+ # Update apps
+mas upgrade
 
 # =====================================================
 # Update, clean, check
