@@ -32,7 +32,6 @@ PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="${GOENV_ROOT}/bin:${PATH}"
 eval "$(goenv init -)"
-<<<<<<< HEAD
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
 export GOPROXY=direct
@@ -40,25 +39,6 @@ export GOPROXY=direct
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-=======
-export PATH="${GOROOT}/bin:$PATH"
-export PATH="${PATH}:${GOPATH}/bin"
-
-# Node version manager
-export NVM_DIR="${HOME}/.nvm"
-[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
-[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
-
-# Pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
->>>>>>> c0e58ee990903bd55f3b657e1afba0b31d525934
-
-# Clean up possible duplicates in path and export
-# typeset -aU path
-# export PATH
-# export MANPATH=$(manpath)
 
 # Misc
 alias ocat'cat'
