@@ -13,15 +13,11 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
+export GOPROXY=direct
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Clean up possible duplicates in path and export
 typeset -aU path
@@ -31,18 +27,15 @@ export MANPATH=$(manpath)
 # Misc
 alias ocat'cat'
 alias cat='bat'
+alias python=python3
 
 # Terraform
 alias tf='terraform'
-alias tfi='terraform init -upgrade'
+alias tfi='terraform init -upgrade=true'
+alias tfa='terraform apply --auto-approve'
 alias tfp='terraform plan'
 alias tfl='terraform state list'
 alias tfo='terraform output'
-alias tfw='terraform workspace list'
-alias tfs='terraform workspace select'
-
-# Autoflake the shit out of that directory
-alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports  --remove-unused-variables .'
 
 # Clean commands
 alias tfclean='find . | grep -E "(\.terraform|\.terraform.lock.hcl|\.terraform.tfstate*)" | xargs rm -rf'
@@ -53,15 +46,14 @@ alias dclean='docker image prune -a && docker container prune'
 alias runclean='dsclean; pyclean'
 
 # HomeBrew
-# alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew' # suppres config warnings
 alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
 
-# colorls
-alias lc='colorls -la'
-alias lcd='colorls --dirs -la'
-alias lcf='colorls --files -la'
-alias lcsd='colorls --sort-dirs -la'
-alias lcsf='colorls --sort-files -la'
+# # colorls
+# alias lc='colorls -la'
+# alias lcd='colorls --dirs -la'
+# alias lcf='colorls --files -la'
+# alias lcsd='colorls --sort-dirs -la'
+# alias lcsf='colorls --sort-files -la'
 
 # Kubernetes
 alias k='kubectl'
@@ -76,9 +68,6 @@ export EDITOR='vim'
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
 
-# EKS login
-alias eks_login='aws eks update-kubeconfig --name $1'
-
 # load git auto completion if it exists
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
@@ -87,20 +76,15 @@ fi
 # Activate direnv
 eval "$(direnv hook zsh)"
 
-# Nerd font
-alias ls='ls -G'
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-DISABLE_UPDATE_PROMPT=true
-
 # Autocompletion
 autoload -U +X bashcompinit && bashcompinit
 autoload -U +X compinit && compinit
 autoload -U +X promptinit && promptinit
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
+# Rust/Cargo
+source "$HOME/.cargo/env"
 
-source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
+eval "$(starship init zsh)"
+
+# Created by `pipx` on 2024-06-13 19:54:50
+export PATH="$PATH:/Users/brybiggs/.local/bin"

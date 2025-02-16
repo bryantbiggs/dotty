@@ -1,5 +1,7 @@
 {
     "cSpell.userWords": [
+        "adot",
+        "apiserver",
         "appr",
         "argspec",
         "arns",
@@ -15,27 +17,40 @@
         "Bottlerocket",
         "bugfix",
         "canonicalize",
+        "clippy",
         "cloudinit",
         "cloudwatch",
+        "clowdhaus",
         "configmap",
         "confs",
         "conftest",
         "containerd",
+        "cookiecluster",
         "coredns",
         "cphosts",
         "createdby",
+        "Daemonset",
         "daemonsets",
         "datadog",
+        "dataplane",
         "deserialization",
         "devops",
         "direnv",
         "dockerize",
+        "dockershim",
         "docstrings",
         "dynamodb",
+        "eksbuild",
+        "eksctl",
+        "eksup",
         "Elasticache",
+        "eniconfig",
+        "eniconfigs",
         "envrc",
         "Fargate",
         "fghi",
+        "Firelens",
+        "fluentbit",
         "functools",
         "getfullargspec",
         "Gruntwork's",
@@ -46,11 +61,13 @@
         "hostnames",
         "hotfix",
         "hotfixes",
+        "insta",
         "IPAM",
         "irsa",
         "isort",
         "jinja",
         "journald",
+        "jsonencode",
         "karpenter",
         "khuylo",
         "kube",
@@ -60,25 +77,37 @@
         "kubergrunt",
         "kubernetes",
         "lifecycle",
+        "linenums",
         "lockdown",
         "logfile",
         "mergeable",
+        "mngs",
         "motd",
         "moto",
+        "mountpoint",
         "nginx",
+        "nodegroup",
+        "nodegroups",
+        "odcr",
         "oidc",
+        "openapi",
         "parametrize",
         "pipenv",
         "pipfile",
         "pybuild",
         "pypi",
         "pytest",
+        "replicasets",
         "repo",
         "repos",
+        "resourcegroups",
+        "rstest",
+        "rustfmt",
         "secretsmanager",
         "serverless",
         "setenv",
         "sigterm",
+        "statefulsets",
         "stopall",
         "strftime",
         "stringify",
@@ -92,6 +121,8 @@
         "templatefile",
         "terraform",
         "tfvars",
+        "tmpl",
+        "tolerations",
         "userdata",
         "vpcs",
         "xlarge",
@@ -101,17 +132,20 @@
     "material-icon-theme.files.associations": {
         "*.tf": "terraform"
     },
-    "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.integrated.rendererType": "canvas",
     "terminal.integrated.lineHeight": 1.3,
     // "terminal.integrated.rendererType": "dom",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Shades of Purple",
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "zsh",
     "explorer.confirmDelete": false,
-    "editor.quickSuggestions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    },
     "editor.tabSize": 2,
     "editor.renderWhitespace": "all",
     // Insert spaces when pressing Tab.
@@ -119,11 +153,15 @@
     // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
     "editor.detectIndentation": true,
     "files.trimTrailingWhitespace": true,
+    "go.toolsEnvVars": {
+        "GOPROXY": "direct"
+    },
     "python.pythonPath": "python3",
     "[python]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
     },
     "python.linting.flake8Enabled": true,
     "python.jediEnabled": false,
@@ -143,7 +181,7 @@
     },
     "editor.suggestSelection": "first",
     "[json]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
@@ -154,7 +192,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -165,12 +203,11 @@
     "prettier.singleQuote": true,
     "yaml.format.singleQuote": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "window.zoomLevel": -2,
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[html]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "tabnine.experimentalAutoImports": true,
     "workbench.editorAssociations": {
@@ -181,10 +218,10 @@
         "*.rs": "rust"
     },
     "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "[scss]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "vscode.css-language-features"
     },
     "redhat.telemetry.enabled": false,
     "notebook.cellToolbarLocation": {
@@ -199,7 +236,15 @@
     "github.copilot.enable": {
         "*": true,
         "yaml": true,
-        "plaintext": false,
+        "plaintext": true,
         "markdown": true
+    },
+    "window.zoomLevel": -1,
+    "go.toolsManagement.autoUpdate": true,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "editor.stickyScroll.enabled": false,
+    "workbench.colorTheme": "Shades of Purple",
+    "amazonQ.suppressPrompts": {
+        "amazonQSessionConfigurationMessage": true
     },
 }
