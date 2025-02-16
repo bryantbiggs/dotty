@@ -12,26 +12,20 @@ fi
 # Install extensions
 # To generate => for EXT in $(code --list-extensions); do echo "code --install-extension $EXT"; done;
 
+code --install-extension 4ops.packer
+code --install-extension aaron-bond.better-comments
 code --install-extension ahmadawais.shades-of-purple
-code --install-extension bungcip.better-toml
-code --install-extension christian-kohler.npm-intellisense
-code --install-extension clarkyu.vscode-sql-beautify
-code --install-extension GitHub.copilot
-code --install-extension Gruntfuggly.todo-tree
+code --install-extension davidanson.vscode-markdownlint
+code --install-extension fill-labs.dependi
+code --install-extension github.copilot
+code --install-extension github.copilot-chat
+code --install-extension golang.go
 code --install-extension hashicorp.hcl
 code --install-extension hashicorp.terraform
-code --install-extension ms-azuretools.vscode-docker
-code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-code --install-extension ms-python.python
-code --install-extension ms-python.vscode-pylance
-code --install-extension PKief.material-icon-theme
+code --install-extension pkief.material-icon-theme
 code --install-extension redhat.vscode-yaml
 code --install-extension rust-lang.rust-analyzer
-code --install-extension serayuzgur.crates
-code --install-extension solomonsscott.furnace
 code --install-extension streetsidesoftware.code-spell-checker
-code --install-extension svelte.svelte-vscode
-code --install-extension TabNine.tabnine-vscode
-code --install-extension usernamehw.errorlens
-code --install-extension WakaTime.vscode-wakatime
-code --install-extension wix.vscode-import-cost
+code --install-extension tamasfe.even-better-toml
+code --install-extension wakatime.vscode-wakatime
+code --install-extension zxh404.vscode-proto3
