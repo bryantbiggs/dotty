@@ -6,10 +6,6 @@ export python=python3
 
 # List all path entries before the "standard" PATH
 export PATH="$HOME/.cargo/bin"
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  PATH="${HOME}/usr/local/opt/ruby/bin:${PATH}"
-  PATH=${PATH}:$(ruby -e 'puts Gem.bindir')
-fi
 
 # Brew
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -39,6 +35,9 @@ export GOPROXY=direct
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+alias ls='ls -la --color=auto'
+alias dir='dir --color=auto'
 
 # Misc
 alias ocat'cat'
@@ -92,9 +91,6 @@ export ARCHFLAGS="-arch x86_64"
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
-
-# Activate direnv
-eval "$(direnv hook zsh)"
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Nerd font

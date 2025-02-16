@@ -55,9 +55,9 @@ brew "zsh-history-substring-search"
 brew "zsh-syntax-highlighting"
 brew "michaeleisel/zld/zld"
 brew "minamijoyo/hcledit/hcledit"
+
 cask "alfred"
 cask "appcleaner"
-cask "telegram"
 cask "visual-studio-code"
 
 mas "Amphetamine", id: 937984704
