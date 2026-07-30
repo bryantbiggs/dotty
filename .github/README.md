@@ -30,6 +30,7 @@ directory under `~/.dotty-backup/` rather than deleted.
 | `shell/.zprofile` | Login shells. macOS only: undoes `path_helper` reordering. |
 | `shell/.zshrc` | **Interactive** zsh only: aliases, prompt, completions, hooks. |
 | `shell/.bashrc`, `.bash_profile` | Minimal; zsh is the login shell on both machines. |
+| `bin/update` | One maintenance pass across every package manager. Linked to `~/.local/bin/update`. |
 | `git/.gitconfig` | Git configuration. |
 | `vscode/settings.json` | VS Code settings. Linked as a single file, never the whole directory. |
 | `linux/Brewfile`, `linux/apt-packages.txt` | Captured package state for Linux. |
@@ -50,6 +51,27 @@ the toolchain.
 `.zprofile` exists for one macOS-specific reason. macOS runs `path_helper`
 between `.zshenv` and `.zprofile`, rebuilding PATH with the system directories in
 front. Re-sourcing `path.zsh` from `.zprofile` restores the intended order.
+
+## Maintenance
+
+```sh
+update              # apt, snap, brew, rustup, cargo binaries, gh extensions, uv
+update --dry-run    # report what would run
+update --no-sudo    # skip apt and snap
+```
+
+Sections are independent: one failing manager does not abort the rest, and any
+tool that is not installed is skipped, so the same script runs on both machines.
+
+It only advances what is already present. Version managers (goenv, nvm) are
+reported rather than auto-advanced, because moving the Go or Node version a
+project builds against is a decision, not maintenance.
+
+This exists because maintenance used to be lopsided. `brewup` covered Homebrew,
+`rustup update` had been run once in 10,447 shell commands, and
+`cargo install-update` never — which left 41 cargo-installed binaries with three
+over a year old and fifteen more between six and twelve months, the test runner
+and `cargo-audit` among them.
 
 ## Compatibility
 

@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+#
+# One maintenance pass across every package manager on this machine.
+#
+# This exists because the shell history showed maintenance was ad-hoc and
+# lopsided: `brewup` covered Homebrew, `rustup update` had been run once in
+# 10,447 commands, and `cargo install-update` never. The result was 41
+# cargo-installed binaries with three over a year old and fifteen more between
+# six and twelve months, including the test runner and cargo-audit.
+#
+# Each section is independent and skipped when its tool is absent, so the same
+# script runs on macOS and Linux. Nothing here installs new software or changes
+# a pinned version; it only advances what is already present.
+#
+# Usage:
+#   update              run every section
+#   update --dry-run    report what would run, change nothing
+#   update --no-sudo    skip the sections needing root (apt, snap)
+
+set -uo pipefail   # deliberately not -e: one failing manager must not abort the rest
+
+DRY_RUN=0
+NO_SUDO=0
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run) DRY_RUN=1 ;;
+    --no-sudo) NO_SUDO=1 ;;
+    -h|--help) sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    *) echo "unknown argument: $arg" >&2; exit 1 ;;
+  esac
+done
+
+failed=()
+
+section() { printf '\n\033[1m== %s\033[0m\n' "$1"; }
+skip()    { printf '   \033[90mskip: %s\033[0m\n' "$1"; }
+run() {
+  if [[ $DRY_RUN -eq 1 ]]; then
+    printf '   \033[33mwould run:\033[0m %s\n' "$*"
+    return 0
+  fi
+  printf '   \033[36m$\033[0m %s\n' "$*"
+  if ! "$@"; then
+    printf '   \033[31mfailed:\033[0m %s\n' "$*"
+    failed+=("$*")
+  fi
+}
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+# ---------------------------------------------------------------- system
+if [[ "$OSTYPE" == linux* ]]; then
+  section "apt"
+  if [[ $NO_SUDO -eq 1 ]]; then
+    skip "--no-sudo"
+  elif have apt-get; then
+    run sudo apt-get update
+    run sudo apt-get upgrade -y
+    run sudo apt-get autoremove --purge -y
+    run sudo apt-get autoclean
+  else
+    skip "apt-get not found"
+  fi
+
+  section "snap"
+  if [[ $NO_SUDO -eq 1 ]]; then
+    skip "--no-sudo"
+  elif have snap; then
+    run sudo snap refresh
+    # Disabled revisions are only pruned on a snap's next refresh, so removing
+    # them here is what actually reclaims the disk.
+    if [[ $DRY_RUN -eq 0 ]]; then
+      snap list --all 2>/dev/null | awk '/disabled/{print $1, $3}' | while read -r name rev; do
+        printf '   \033[36m$\033[0m sudo snap remove %s --revision=%s\n' "$name" "$rev"
+        sudo snap remove "$name" --revision="$rev" >/dev/null 2>&1 || true
+      done
+    fi
+  else
+    skip "snap not found"
+  fi
+fi
+
+# ---------------------------------------------------------------- homebrew
+section "homebrew"
+if have brew; then
+  run brew update
+  run brew upgrade
+  run brew cleanup -s
+else
+  skip "brew not found"
+fi
+
+# ---------------------------------------------------------------- rust
+section "rust"
+if have rustup; then
+  run rustup self update
+  run rustup update
+else
+  skip "rustup not found"
+fi
+
+section "cargo binaries"
+if ! have cargo; then
+  skip "cargo not found"
+elif have cargo-install-update; then
+  # cargo-update rebuilds only what is actually out of date.
+  run cargo install-update -a
+else
+  skip "cargo-update not installed (install with: cargo install cargo-update)"
+fi
+
+# ---------------------------------------------------------------- misc
+section "gh extensions"
+if have gh; then
+  if [[ -n "$(gh extension list 2>/dev/null)" ]]; then
+    run gh extension upgrade --all
+  else
+    skip "no extensions installed"
+  fi
+else
+  skip "gh not found"
+fi
+
+section "uv"
+if have uv; then
+  run uv self update
+else
+  skip "uv not found"
+fi
+
+# ---------------------------------------------------------------- report
+# Version managers are deliberately reported, not auto-advanced. Moving the Go
+# or Node version a project builds against is a decision, not maintenance.
+section "version managers (report only)"
+if have goenv; then
+  printf '   goenv global: %s   (newest installed: %s)\n' \
+    "$(goenv global 2>/dev/null | tail -1)" "$(goenv versions --bare 2>/dev/null | tail -1)"
+fi
+if [[ -d "${NVM_DIR:-$HOME/.nvm}/versions/node" ]]; then
+  printf '   node versions installed: %s\n' \
+    "$(ls "${NVM_DIR:-$HOME/.nvm}/versions/node" 2>/dev/null | tr '\n' ' ')"
+fi
+
+echo
+if [[ ${#failed[@]} -eq 0 ]]; then
+  printf '\033[32mdone\033[0m — no failures\n\n'
+else
+  printf '\033[31mdone — %d section(s) failed:\033[0m\n' "${#failed[@]}"
+  printf '   %s\n' "${failed[@]}"
+  echo
+  exit 1
+fi

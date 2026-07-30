@@ -101,6 +101,11 @@ link "$DOTFILES/shell/.bash_profile" "$HOME/.bash_profile"
 # path.zsh is sourced by .zshenv and .zprofile by absolute path, not linked.
 
 echo
+echo "bin"
+# ~/.local/bin is already on PATH via the uv/rustup env shim that path.zsh sources.
+link "$DOTFILES/bin/update" "$HOME/.local/bin/update"
+
+echo
 echo "git"
 link "$DOTFILES/git/.gitconfig" "$HOME/.gitconfig"
 
