@@ -122,10 +122,15 @@ else
 fi
 
 section "uv"
-if have uv; then
-  run uv self update
-else
+if ! have uv; then
   skip "uv not found"
+elif have brew && brew list uv >/dev/null 2>&1; then
+  # `uv self update` hard-errors when uv came from a package manager, which made
+  # this the one section that failed on an otherwise clean run. brew upgrade
+  # above already advanced it, so there is nothing left to do here.
+  skip "brew-managed, handled by the homebrew section"
+else
+  run uv self update
 fi
 
 # ---------------------------------------------------------------- report
