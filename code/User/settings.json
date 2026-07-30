@@ -1,6 +1,7 @@
 {
     "cSpell.userWords": [
         "ADOT",
+        "Agones",
         "appautoscaling",
         "appr",
         "apprunner",
@@ -132,6 +133,7 @@
         "repos",
         "rolearn",
         "Rolebindings",
+        "sasl",
         "SAST",
         "secretsmanager",
         "serverless",
@@ -220,7 +222,7 @@
     },
     "editor.suggestSelection": "first",
     "[json]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
@@ -257,7 +259,7 @@
         "*.rs": "rust"
     },
     "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "[scss]": {
         "editor.defaultFormatter": "HookyQR.beautify"
@@ -286,5 +288,7 @@
     "cSpell.checkOnlyEnabledFileTypes": false,
         "plaintext": false,
         "markdown": true,
-        "workbench.colorTheme": "Shades of Purple"
+        "workbench.colorTheme": "Shades of Purple",
+        "crates.listPreReleases": true,
+        "crates.useLocalCargoIndex": false
 }

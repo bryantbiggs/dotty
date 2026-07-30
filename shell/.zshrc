@@ -2,7 +2,7 @@
 unset PATH
 
 # Python 2.7 was removed
-export python=python3
+alias python='python3'
 
 # List all path entries before the "standard" PATH
 export PATH="$HOME/.cargo/bin"
@@ -36,19 +36,9 @@ export PATH="${GOROOT}/bin:$PATH"
 export PATH="${PATH}:${GOPATH}/bin"
 
 # Node version manager
-export NVM_DIR="${HOME}/.nvm"
-[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
-[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
-
-# Pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# Clean up possible duplicates in path and export
-# typeset -aU path
-# export PATH
-# export MANPATH=$(manpath)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Misc
 alias ocat'cat'
@@ -63,9 +53,6 @@ alias tfo='terraform output'
 
 export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
 
-# Autoflake the shit out of that directory
-alias flakeit='autoflake -i -r --expand-star-imports --remove-all-unused-imports  --remove-unused-variables .'
-
 # Clean commands
 alias tfclean='find . | grep -E "(\.terraform|\.terraform.lock.hcl|\.tfsec|\.terraform.tfstate*)" | xargs rm -rf'
 alias dsclean='find . | grep -E "(.DS_Store)" | xargs rm'
@@ -73,7 +60,7 @@ alias pyclean='find . | grep -E "(__pycache__|\.pyc|\.pyo$|\.pytest_cache)" | xa
 alias jsclean='find . | grep -E "(node_modules|\.serverless|package-lock.json|yarn.lock|dist)" | xargs rm -rf'
 alias dclean='docker image prune -a && docker container prune'
 alias runclean='dsclean; pyclean'
-
+alias ghclean='gh run list --limit 100 --json databaseId  -q ".[].databaseId" | xargs -IID gh run delete ID'
 # HomeBrew
 if [[ "$OSTYPE" == "darwin"* ]]; then
   alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
@@ -101,26 +88,12 @@ export EDITOR='vim'
 export LANG=en_US.UTF-8
 export ARCHFLAGS="-arch x86_64"
 
-# EKS login
-alias eks_login='aws eks update-kubeconfig --name $1'
-
 # load git auto completion if it exists
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
   . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Activate direnv
-eval "$(direnv hook zsh)"
-
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # Nerd font
-  alias ls='ls -G'
-  POWERLEVEL9K_MODE='nerdfont-complete'
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline status)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-  POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-  DISABLE_UPDATE_PROMPT=true
-
   # Autocompletion
   autoload -U +X bashcompinit && bashcompinit
   autoload -U +X compinit && compinit
@@ -128,8 +101,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
   # source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
   export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
-
-  source  ~/Documents/powerlevel9k/powerlevel9k.zsh-theme
 
   export ZSH=$HOME/.oh-my-zsh
   source $HOME/.bashrc
@@ -143,3 +114,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
   source /Users/bryantbiggs/.config/broot/launcher/bash/br
 fi
+
+. "$HOME/.local/bin/env"
+
+eval "$(direnv hook zsh)"
+
+alias claude-personal="CLAUDE_CONFIG_DIR=~/.claude-personal claude"
+alias claude-clowd="CLAUDE_CONFIG_DIR=~/.claude-clowd-haus claude"

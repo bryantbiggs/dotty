@@ -14,7 +14,16 @@
 [github]
 	user = bryantbiggs
 [init]
-	templateDir = ~/.git-template
+	templatedir = ~/.git-templates
 	defaultBranch = main
 [pull]
 	rebase = false
+[commit]
+        template = ~/.gitmessage.txt
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/home/linuxbrew/.linuxbrew/bin/gh auth git-credential
