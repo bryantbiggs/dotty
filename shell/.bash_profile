@@ -1,6 +1,4 @@
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  source /Users/bryantbiggs/.config/broot/launcher/bash/br
-fi
-. "$HOME/.cargo/env"
+# Login bash. Defers to .bashrc, which is the standard bash arrangement and the
+# reason these two files no longer need to be byte-identical copies of each other.
 
-. "$HOME/.local/bin/env"
+[[ -f "${HOME}/.bashrc" ]] && . "${HOME}/.bashrc"

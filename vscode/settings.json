@@ -1,0 +1,58 @@
+{
+    "tabnine.experimentalAutoImports": true,
+    "workbench.colorTheme": "Shades of Purple",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "go.toolsManagement.autoUpdate": true,
+    "cSpell.userWords": [
+        "btrfs",
+        "clowdhaus",
+        "daemonset",
+        "eksup",
+        "eniconfig",
+        "eniconfigs",
+        "EROFS",
+        "Eytzinger",
+        "fscache",
+        "FSDAX",
+        "hostnames",
+        "inferencing",
+        "inodes",
+        "irsa",
+        "Karpenter",
+        "kubeconfig",
+        "kubelet",
+        "LZMA",
+        "merkle",
+        "nodegroup",
+        "pulumi",
+        "Squashfs",
+        "xattr",
+        "Zstandard"
+    ],
+    "editor.stickyScroll.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "files.associations": {
+        "*.tpl": "toml"
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "docker.extension.enableComposeLanguageServer": false,
+    "[html]": {
+        "editor.defaultFormatter": "mohd-akram.vscode-html-format"
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "githubPullRequests.pullBranch": "never"
+}

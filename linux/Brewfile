@@ -1,0 +1,172 @@
+tap "cargo-lambda/tap", "https://github.com/cargo-lambda/homebrew-tap.git"
+tap "clowdhaus/taps"
+tap "filosottile/musl-cross"
+tap "github/gh"
+tap "wata727/tflint"
+# Record and share terminal sessions
+brew "asciinema"
+# Text processing scripting language
+brew "awk"
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# XML-based font configuration API for X Windows
+brew "fontconfig"
+# Binary installation for rust projects
+brew "cargo-binstall"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Modern diagram scripting language that turns text to diagrams
+brew "d2"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Tool for exploring each layer in a docker image
+brew "dive"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Command-line tool to interact with exercism.io
+brew "exercism"
+# Modern, maintained replacement for ls
+brew "eza"
+# Collection of GNU find, xargs, and locate
+brew "findutils"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Git extension for versioning large files
+brew "git-lfs"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
+# Go version management
+brew "goenv"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Like cURL, but for gRPC
+brew "grpcurl"
+# Smarter Dockerfile linter to validate best practices
+brew "hadolint"
+# Command-line editor for HCL
+brew "hcledit"
+# Kubernetes package manager
+brew "helm"
+# Tool for automatically generating markdown documentation for helm charts
+brew "helm-docs"
+# Improved top (interactive process viewer)
+brew "htop"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Run local Kubernetes cluster in Docker
+brew "kind"
+# Build and deploy Go applications on Kubernetes
+brew "ko"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Report faked system time to programs
+brew "libfaketime"
+# Create modern online books from Markdown files
+brew "mdbook"
+# Minify and secure Docker images
+brew "mintoolkit"
+# Collection of tools that nobody wrote when UNIX was young
+brew "moreutils"
+# Manage multiple Node.js versions
+brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk"
+# Python dependency management tool
+brew "pipenv"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit", link: false
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# CLI proxy to minimize LLM token consumption
+brew "rtk"
+# Used as a compiler wrapper and avoids compilation when possible
+brew "sccache"
+# Man-in-the-middle attacks against SSL encrypted network connections
+brew "sslsplit"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
+# Tool to generate documentation from Terraform modules
+brew "terraform-docs"
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+# Linter for Terraform files
+brew "tflint"
+# Compress/expand executable files
+brew "upx"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
+# Command-line interface to the WakaTime api
+brew "wakatime-cli"
+# Internet file retriever
+brew "wget"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Additional completion definitions for zsh
+brew "zsh-completions"
+# Zsh port of Fish shell's history search
+brew "zsh-history-substring-search"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
+vscode "ahmadawais.shades-of-purple"
+vscode "andrejunges.handlebars"
+vscode "celianriboulet.webvalidator"
+vscode "clarkyu.vscode-sql-beautify"
+vscode "davidanson.vscode-markdownlint"
+vscode "fill-labs.dependi"
+vscode "github.vscode-github-actions"
+vscode "github.vscode-pull-request-github"
+vscode "golang.go"
+vscode "gruntfuggly.todo-tree"
+vscode "hashicorp.hcl"
+vscode "hashicorp.terraform"
+vscode "kdl-org.kdl"
+vscode "mohd-akram.vscode-html-format"
+vscode "pkief.material-icon-theme"
+vscode "redhat.vscode-yaml"
+vscode "rust-lang.rust-analyzer"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "simonsiefke.svg-preview"
+vscode "streetsidesoftware.code-spell-checker"
+vscode "svelte.svelte-vscode"
+vscode "tamasfe.even-better-toml"
+vscode "usernamehw.errorlens"
+vscode "wakatime.vscode-wakatime"
+cargo "cargo-audit"
+cargo "cargo-crap"
+cargo "cargo-deny"
+cargo "cargo-dist"
+cargo "cargo-edit"
+cargo "cargo-fuzz"
+cargo "cargo-hack"
+cargo "cargo-hakari"
+cargo "cargo-insta"
+cargo "cargo-llvm-cov"
+cargo "cargo-machete"
+cargo "cargo-mutants"
+cargo "cargo-nextest"
+cargo "cargo-outdated"
+cargo "cargo-tarpaulin"
+cargo "cargo-udeps"
+cargo "cargo-vet"
+cargo "flamegraph"
+cargo "hyperfine"
+cargo "just"
+cargo "mdbook-admonish"
+cargo "mdbook-catppuccin"
+cargo "mdbook-linkcheck"
+cargo "mdbook-pagetoc"
+cargo "mdbook-toc"
+cargo "prek"
+cargo "ruget"

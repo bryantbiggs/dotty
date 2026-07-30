@@ -1,65 +1,9 @@
-# ==============================================================================
-# Platform
+# Sourced for INTERACTIVE shells only.
 #
-# Detected once here. Everything platform specific keys off these flags instead
-# of repeating the $OSTYPE test inline.
-# ==============================================================================
-typeset -g OS_MACOS=0 OS_LINUX=0
-case "$OSTYPE" in
-  darwin*) OS_MACOS=1 ;;
-  linux*)  OS_LINUX=1 ;;
-esac
-
-# ==============================================================================
-# PATH
-#
-# Built from a clean slate so the result is deterministic regardless of what a
-# login shell or a package installer prepended. "typeset -U" keeps the array
-# deduplicated, retaining the first (highest precedence) occurrence.
-# ==============================================================================
-unset PATH
-typeset -U path PATH
-
-export PATH="$HOME/.cargo/bin"
-
-if (( OS_MACOS )); then
-  # TODO(mac): "$HOME/usr/local/opt/ruby/bin" looks like a typo for
-  # "/usr/local/opt/ruby/bin" (Intel brew) or "/opt/homebrew/opt/ruby/bin"
-  # (Apple Silicon). Cannot verify from Linux; check during the Mac pass.
-  PATH="${HOME}/usr/local/opt/ruby/bin:${PATH}"
-  PATH="${PATH}:$(ruby -e 'puts Gem.bindir')"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if (( OS_LINUX )); then
-  PATH="/home/linuxbrew/.linuxbrew/bin:${PATH}"
-  PATH="/home/linuxbrew/.linuxbrew/sbin:${PATH}"
-  PATH="${PATH}:/snap/bin"
-fi
-
-# System directories last, so user and package manager tools take precedence.
-PATH="${PATH}:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# uv and rustup installer shim. It is idempotent and guards against double
-# entries, so a single call here is enough. This was previously pulled in three
-# separate times: here, via .bashrc, and from .zshenv.
-. "$HOME/.local/bin/env"
-
-# ==============================================================================
-# Go
-# ==============================================================================
-export GOENV_ROOT="$HOME/.goenv"
-if [[ -d "$GOENV_ROOT" ]]; then
-  PATH="${GOENV_ROOT}/bin:${PATH}"
-  eval "$(goenv init -)"
-
-  # Guarded. When no global version is set, goenv leaves GOROOT and GOPATH
-  # empty and an unguarded expansion prepends a bare "/bin" to PATH, which is
-  # how this silently broke: "go" resolved to a shim that could not find a
-  # toolchain. Set a version with: goenv use <version> --global
-  [[ -n "$GOROOT" ]] && PATH="${GOROOT}/bin:${PATH}"
-  [[ -n "$GOPATH" ]] && PATH="${PATH}:${GOPATH}/bin"
-fi
+# PATH and environment live in .zshenv so that non-interactive shells get them
+# too. Only things a human at a prompt needs belong here: completions, prompt,
+# aliases, and hooks. If something is missing from a script, it belongs in
+# .zshenv, not here.
 
 # ==============================================================================
 # Node
@@ -67,10 +11,8 @@ fi
 # nvm is lazy loaded. Sourcing nvm.sh eagerly cost roughly 520ms of every shell
 # startup, over half the total, even when no node version was active. These
 # shims defer the load until first use and then delete themselves so the real
-# commands take over.
+# commands take over. NVM_DIR is set in .zshenv.
 # ==============================================================================
-export NVM_DIR="$HOME/.nvm"
-
 if (( OS_MACOS )); then
   _nvm_sh="/opt/homebrew/opt/nvm/nvm.sh"
   _nvm_completion="/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
@@ -95,15 +37,15 @@ fi
 # Completions and prompt
 #
 # oh-my-zsh runs compinit itself. Calling compinit here as well ran it twice and
-# rebuilt the completion dump on every single startup, roughly 250ms. bashcompinit
+# rebuilt the completion dump on every startup, roughly 250ms. bashcompinit
 # requires compinit to have already run, so it comes after the oh-my-zsh source.
 #
-# Note: ZSH_THEME is deliberately left unset, which is what gives the stock zsh
-# prompt (%m%#). oh-my-zsh only sources a theme when ZSH_THEME is non-empty.
-# With no theme and no plugins, oh-my-zsh is contributing only its lib defaults
-# (history, key bindings, completion styling) and compinit.
+# ZSH_THEME is deliberately unset, which is what gives the stock zsh prompt
+# (%m%#). oh-my-zsh only sources a theme when ZSH_THEME is non-empty. With no
+# theme and no plugins, oh-my-zsh contributes only its lib defaults: history
+# options, key bindings, directory aliases, and completion styling.
 # ==============================================================================
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 plugins=()
 ZSH_DISABLE_COMPFIX=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
@@ -111,18 +53,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
 source "$ZSH/oh-my-zsh.sh"
 
 autoload -U +X bashcompinit && bashcompinit
-
-# ==============================================================================
-# Environment
-# ==============================================================================
-export EDITOR='vim'
-export LANG=en_US.UTF-8
-export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
-
-if (( OS_MACOS )); then
-  # TODO(mac): x86_64 is wrong on Apple Silicon. Verify during the Mac pass.
-  export ARCHFLAGS="-arch x86_64"
-fi
 
 # ==============================================================================
 # Aliases
@@ -174,6 +104,5 @@ eval "$(direnv hook zsh)"
 
 if (( OS_MACOS )); then
   eval "$(starship init zsh)"
-  # Was hardcoded to /Users/bryantbiggs/...; $HOME is equivalent and portable.
-  [[ -f "$HOME/.config/broot/launcher/bash/br" ]] && source "$HOME/.config/broot/launcher/bash/br"
+  [[ -f "${HOME}/.config/broot/launcher/bash/br" ]] && source "${HOME}/.config/broot/launcher/bash/br"
 fi
