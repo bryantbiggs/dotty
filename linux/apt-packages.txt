@@ -73,6 +73,7 @@ nvidia-driver-580
 nvidia-settings
 nvme-cli
 openssl
+pkgconf
 protobuf-compiler
 psmisc
 ruby-dev

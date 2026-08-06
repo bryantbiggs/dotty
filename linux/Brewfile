@@ -1,3 +1,31 @@
+# Linux Brewfile.
+#
+# This deliberately does NOT mirror macos/brew/Brewfile. On macOS, Homebrew is
+# how you get GNU userland at all, because the system ships BSD tools. On Linux
+# the distro already provides GNU, so installing the same formulae here does not
+# upgrade anything, it shadows the system copy and drags in a parallel stack.
+#
+# Two concrete failures caused by doing that:
+#
+#   pkgconf   Homebrew's pkg-config searches only Homebrew prefixes. Every
+#             system library probe returns "not found" no matter what is
+#             installed, which read as missing GTK development headers and
+#             parked real work behind a nonexistent problem.
+#
+#   openjdk   Unused here, but it pulls in fontconfig, glib, cairo, harfbuzz,
+#             the X libraries, dbus and util-linux. That util-linux then
+#             shadows mount, umount, nsenter, unshare and findmnt with a build
+#             whose libmount has no verity support, which is exactly the kind
+#             of mount option that fails open and silently does nothing.
+#
+# Rule for this file: add a formula only when the distro does not ship it, or
+# ships a version too old to use. Anything that duplicates the system copy
+# belongs in macos/brew/Brewfile only.
+#
+# coreutils is the deliberate exception. Ubuntu now ships uutils coreutils,
+# which is not fully GNU compatible, so Homebrew's GNU build is a real upgrade
+# rather than a duplicate.
+
 tap "cargo-lambda/tap", "https://github.com/cargo-lambda/homebrew-tap.git"
 tap "clowdhaus/taps"
 tap "filosottile/musl-cross"
@@ -5,14 +33,10 @@ tap "github/gh"
 tap "wata727/tflint"
 # Record and share terminal sessions
 brew "asciinema"
-# Text processing scripting language
-brew "awk"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# XML-based font configuration API for X Windows
-brew "fontconfig"
 # Binary installation for rust projects
 brew "cargo-binstall"
 # Cross-platform make
@@ -31,24 +55,14 @@ brew "docker-compose"
 brew "exercism"
 # Modern, maintained replacement for ls
 brew "eza"
-# Collection of GNU find, xargs, and locate
-brew "findutils"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
 brew "gh"
-# Distributed revision control system
-brew "git"
 # Git extension for versioning large files
 brew "git-lfs"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
 # Go version management
 brew "goenv"
-# GNU grep, egrep and fgrep
-brew "grep"
 # Like cURL, but for gRPC
 brew "grpcurl"
 # Smarter Dockerfile linter to validate best practices
@@ -79,8 +93,6 @@ brew "mintoolkit"
 brew "moreutils"
 # Manage multiple Node.js versions
 brew "nvm"
-# Development kit for the Java programming language
-brew "openjdk"
 # Python dependency management tool
 brew "pipenv"
 # Execute binaries from Python packages in isolated environments
@@ -109,8 +121,6 @@ brew "upx"
 brew "uv"
 # Command-line interface to the WakaTime api
 brew "wakatime-cli"
-# Internet file retriever
-brew "wget"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Additional completion definitions for zsh
