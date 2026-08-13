@@ -9,7 +9,7 @@
 # Configuration (all optional, override in the environment):
 #   CARGO_SWEEP_ROOTS   colon-separated dirs to sweep  (default: $HOME/Documents)
 #   CARGO_SWEEP_DAYS    age threshold in days          (default: 15)
-#   CARGO_SWEEP_MAXSIZE per-target ceiling in MB       (default: 25000)
+#   CARGO_SWEEP_MAXSIZE per-target ceiling in MB       (default: unset, off)
 #   CARGO_SWEEP_LOG     log file                       (default: ~/.cache/cargo-sweep.log)
 #   CARGO_SWEEP_DRYRUN  set to 1 to report without deleting
 #
@@ -21,7 +21,7 @@ set -eu
 
 ROOTS="${CARGO_SWEEP_ROOTS:-$HOME/Documents}"
 DAYS="${CARGO_SWEEP_DAYS:-15}"
-MAXSIZE="${CARGO_SWEEP_MAXSIZE:-25000}"
+MAXSIZE="${CARGO_SWEEP_MAXSIZE:-}"
 LOG="${CARGO_SWEEP_LOG:-$HOME/.cache/cargo-sweep.log}"
 DRY=""
 [ "${CARGO_SWEEP_DRYRUN:-0}" = "1" ] && DRY="--dry-run"
@@ -81,10 +81,14 @@ for root in $ROOTS; do
   # toolchain that nothing has referenced in a while.
   "$CARGO" sweep --time "$DAYS" --recursive $DRY "$root" >>"$LOG" 2>&1 || log "  warn: --time failed in $root"
 
-  # Age alone does not bound a directory that churns faster than it ages. The
-  # ceiling only ever engages on a runaway target, since a complete build of
-  # even a large workspace lands far below it. Artifacts removed here are
-  # rebuilt on demand, so the cost of a false positive is build time.
+  # Optional hard ceiling, off by default. Age alone does not bound a directory
+  # that churns faster than it ages, but this pass is easy to set too low:
+  # cargo-sweep measures apparent file size, not the allocated size df and du
+  # report. One workspace here measures 20.9 GiB by du and 32.9 GiB by
+  # cargo-sweep, so a ceiling chosen against du trims a healthy tree on every
+  # run and forces needless rebuilds. Measure the target with
+  # `cargo sweep --maxsize N --dry-run` and pick a value above what a settled
+  # tree reports before enabling this.
   if [ -n "$MAXSIZE" ]; then
     "$CARGO" sweep --maxsize "$MAXSIZE" --recursive $DRY "$root" >>"$LOG" 2>&1 || log "  warn: --maxsize failed in $root"
   fi

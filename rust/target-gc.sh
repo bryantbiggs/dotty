@@ -20,7 +20,7 @@ PLIST="$HOME/Library/LaunchAgents/${LABEL}.plist"
 # Sweep these roots. Override per machine if repos live elsewhere.
 SWEEP_ROOTS="${CARGO_SWEEP_ROOTS:-$HOME/Documents}"
 SWEEP_DAYS="${CARGO_SWEEP_DAYS:-15}"
-SWEEP_MAXSIZE="${CARGO_SWEEP_MAXSIZE:-25000}"
+SWEEP_MAXSIZE="${CARGO_SWEEP_MAXSIZE:-}"
 
 echo "==> installing cargo-sweep"
 if command -v cargo-sweep >/dev/null 2>&1; then
