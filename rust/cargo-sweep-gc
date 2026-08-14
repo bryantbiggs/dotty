@@ -1,0 +1,107 @@
+#!/bin/sh
+# Bounded garbage collection for Rust target/ directories.
+#
+# Cargo never removes stale build artifacts. Every dependency bump, feature
+# change, or branch switch writes a new fingerprint into target/debug/deps/ and
+# leaves every predecessor in place, so a target/ dir only ever grows. This
+# reclaims the artifacts nothing references any more.
+#
+# Configuration (all optional, override in the environment):
+#   CARGO_SWEEP_ROOTS   colon-separated dirs to sweep  (default: $HOME/Documents)
+#   CARGO_SWEEP_DAYS    age threshold in days          (default: 15)
+#   CARGO_SWEEP_MAXSIZE per-target ceiling in MB       (default: unset, off)
+#   CARGO_SWEEP_LOG     log file                       (default: ~/.cache/cargo-sweep.log)
+#   CARGO_SWEEP_DRYRUN  set to 1 to report without deleting
+#
+# Note on --time: cargo-sweep reads timestamps from cargo's own fingerprint
+# metadata rather than file mtime, so touching files does not age them and a
+# freshly rebuilt tree correctly sweeps to nothing.
+
+set -eu
+
+ROOTS="${CARGO_SWEEP_ROOTS:-$HOME/Documents}"
+DAYS="${CARGO_SWEEP_DAYS:-15}"
+MAXSIZE="${CARGO_SWEEP_MAXSIZE:-}"
+LOG="${CARGO_SWEEP_LOG:-$HOME/.cache/cargo-sweep.log}"
+DRY=""
+[ "${CARGO_SWEEP_DRYRUN:-0}" = "1" ] && DRY="--dry-run"
+
+# launchd gives a minimal PATH, so locate cargo explicitly.
+CARGO="${CARGO_BIN:-$HOME/.cargo/bin/cargo}"
+[ -x "$CARGO" ] || CARGO="$(command -v cargo 2>/dev/null || true)"
+
+mkdir -p "$(dirname "$LOG")"
+log() { echo "$(date '+%Y-%m-%d %H:%M:%S') $*" >>"$LOG"; }
+
+if [ -z "$CARGO" ] || [ ! -x "$CARGO" ]; then
+  log "abort: cargo not found"
+  exit 1
+fi
+
+# A sweep during a live build can delete an artifact rustc is still linking
+# against. Parallel agent sessions make that a routine state, not a rare one,
+# so bail rather than risk corrupting a build in progress.
+#
+# Match on the basename so that cargo subcommand binaries are caught too. A
+# plain "cargo" check misses cargo-zigbuild, cargo-nextest and every other
+# cargo-* wrapper, all of which drive real builds. rust-analyzer itself is
+# excluded deliberately, since it is a long-lived language server that would
+# block the sweep for as long as an editor stays open. The rustc processes it
+# spawns for checks are still caught.
+build_running() {
+  ps -eo comm= 2>/dev/null | sed 's|.*/||' | grep -qE '^(rustc|cargo|cargo-[A-Za-z0-9_-]+)$'
+}
+
+if build_running; then
+  log "skipped: build in progress"
+  exit 0
+fi
+
+before=$(df -k "$HOME" | tail -1 | awk '{print $4}')
+log "start (roots=$ROOTS days=$DAYS${DRY:+ DRY-RUN})"
+
+OLDIFS=$IFS
+IFS=':'
+for root in $ROOTS; do
+  IFS=$OLDIFS
+  [ -d "$root" ] || { log "  skip missing root: $root"; IFS=':'; continue; }
+
+  # Re-check per root. A build can start after the initial check, and this
+  # narrows that window rather than closing it. The residual race is bounded:
+  # cargo rebuilds whatever was removed, so the worst case is lost build time.
+  if build_running; then
+    log "  stopped at $root: build started"
+    break
+  fi
+
+  # --installed drops artifacts built by toolchains rustup no longer has.
+  "$CARGO" sweep --installed --recursive $DRY "$root" >>"$LOG" 2>&1 || log "  warn: --installed failed in $root"
+
+  # --time catches the dominant case: stale fingerprints from the *same*
+  # toolchain that nothing has referenced in a while.
+  "$CARGO" sweep --time "$DAYS" --recursive $DRY "$root" >>"$LOG" 2>&1 || log "  warn: --time failed in $root"
+
+  # Optional hard ceiling, off by default. Age alone does not bound a directory
+  # that churns faster than it ages, but this pass is easy to set too low:
+  # cargo-sweep measures apparent file size, not the allocated size df and du
+  # report. One workspace here measures 20.9 GiB by du and 32.9 GiB by
+  # cargo-sweep, so a ceiling chosen against du trims a healthy tree on every
+  # run and forces needless rebuilds. Measure the target with
+  # `cargo sweep --maxsize N --dry-run` and pick a value above what a settled
+  # tree reports before enabling this.
+  if [ -n "$MAXSIZE" ]; then
+    "$CARGO" sweep --maxsize "$MAXSIZE" --recursive $DRY "$root" >>"$LOG" 2>&1 || log "  warn: --maxsize failed in $root"
+  fi
+
+  IFS=':'
+done
+IFS=$OLDIFS
+
+if [ -n "$DRY" ]; then
+  # Free space moves on its own while other work runs, so a delta measured
+  # during a dry run would report a reclaim that never happened.
+  log "done (dry run, nothing deleted)"
+else
+  after=$(df -k "$HOME" | tail -1 | awk '{print $4}')
+  log "done (reclaimed $(( (after - before) / 1024 )) MiB)"
+fi
