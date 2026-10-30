@@ -1,0 +1,14 @@
+# The benchmark registries serve plain HTTP on loopback. `host` is a map keyed by
+# registry host; a mirror host is parsed as a URL, so it must carry its scheme
+# inline ("127.0.0.1:5001" alone fails with "first path segment in URL cannot
+# contain colon"). Port 5001 is zot, which implements the OCI referrers API that
+# SOCI needs to find its index; distribution 3.1.1 does not implement it at all.
+[resolver]
+  [resolver.host."127.0.0.1:5001"]
+    [[resolver.host."127.0.0.1:5001".mirrors]]
+      host = "http://127.0.0.1:5001"
+      insecure = true
+  [resolver.host."127.0.0.1:5000"]
+    [[resolver.host."127.0.0.1:5000".mirrors]]
+      host = "http://127.0.0.1:5000"
+      insecure = true

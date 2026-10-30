@@ -1,0 +1,20 @@
+[Unit]
+Description=nydus snapshotter (Rootless)
+PartOf=containerd.service
+After=containerd.service
+
+[Service]
+Environment=PATH=/home/bryant-biggs/.local/nydus-snapshotter/bin:/home/bryant-biggs/.local/nydus/nydus-static:/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/sbin:/usr/sbin
+# setuptool nsenter reads containerd's child_pid, which rootlesskit writes only once the
+# namespace exists; containerd is Type=simple, so After= alone does not wait for it.
+ExecStartPre=/bin/sh -c 'for i in $$(seq 150); do [ -s %t/containerd-rootless/child_pid ] && [ -e %t/containerd-rootless/netns ] && exit 0; sleep 0.2; done; exit 1'
+ExecStart=/home/bryant-biggs/.local/nerdctl-full/bin/containerd-rootless-setuptool.sh nsenter -- containerd-nydus-grpc --config /home/bryant-biggs/.config/nydus/snapshotter.toml
+ExecReload=/bin/kill -s HUP $MAINPID
+RestartSec=2
+Restart=always
+Type=simple
+# Matches upstream: nydusd daemons outlive a snapshotter restart so their mounts stay up.
+KillMode=process
+
+[Install]
+WantedBy=default.target

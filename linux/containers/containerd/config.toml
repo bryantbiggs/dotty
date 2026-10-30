@@ -1,0 +1,48 @@
+version = 4
+# CRI is unused here (oar runs its own containerd for conformance tests), and
+# in a user namespace it only warns about CNI and AppArmor.
+disabled_plugins = ["io.containerd.grpc.v1.cri", "io.containerd.cri.v1.runtime", "io.containerd.cri.v1.images", "io.containerd.podsandbox.controller.v1.podsandbox"]
+
+[proxy_plugins]
+  [proxy_plugins."stargz"]
+    type = "snapshot"
+    address = "/run/user/1000/containerd-stargz-grpc/containerd-stargz-grpc.sock"
+  [proxy_plugins.stargz.exports]
+    root = "/home/bryant-biggs/.local/share/containerd-stargz-grpc/"
+    enable_remote_snapshot_annotations = "true"
+
+  [proxy_plugins."soci"]
+    type = "snapshot"
+    address = "/run/user/1000/soci-snapshotter-grpc/soci.sock"
+  # Without this containerd never passes the image reference down, and the
+  # snapshotter falls back to a full layer fetch for every layer.
+  [proxy_plugins.soci.exports]
+    root = "/home/bryant-biggs/.local/soci/root"
+    enable_remote_snapshot_annotations = "true"
+
+  [proxy_plugins."nydus"]
+    type = "snapshot"
+    address = "/run/user/1000/containerd-nydus/containerd-nydus-grpc.sock"
+  [proxy_plugins.nydus.exports]
+    root = "/home/bryant-biggs/.local/nydus-snapshotter/root"
+    enable_remote_snapshot_annotations = "true"
+
+[[plugins."io.containerd.transfer.v1.local".unpack_config]]
+platform = "linux"
+snapshotter = "nydus"
+differ = "walking"
+
+[[plugins."io.containerd.transfer.v1.local".unpack_config]]
+platform = "linux"
+snapshotter = "soci"
+differ = "walking"
+
+[[plugins."io.containerd.transfer.v1.local".unpack_config]]
+platform = "linux"
+snapshotter = "stargz"
+differ = "walking"
+
+[[plugins."io.containerd.transfer.v1.local".unpack_config]]
+platform = "linux"
+snapshotter = "overlayfs"
+differ = "walking"

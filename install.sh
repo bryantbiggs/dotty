@@ -28,6 +28,8 @@ set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP="${HOME}/.dotty-backup/$(date +%Y%m%d-%H%M%S)"
+# AppArmor profile that lets rootlesskit create user namespaces on Ubuntu.
+ROOTLESSKIT_PROFILE="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
 
 WITH_PACKAGES=0
 CHECK_ONLY=0
@@ -125,6 +127,41 @@ else
   warn "VS Code not installed, skipped"
 fi
 
+if [[ "$OS" == linux ]]; then
+  echo
+  echo "containers"
+  # Rootless containerd with the stargz, soci and nydus snapshotters. The binaries are
+  # release tarballs unpacked under ~/.local (nerdctl-full, soci, nydus-snapshotter,
+  # nydus); only their configuration and user units live here.
+  if [[ -x "$HOME/.local/nerdctl-full/bin/containerd" ]]; then
+    containers="$DOTFILES/linux/containers"
+    link "$containers/containerd/config.toml"             "$HOME/.config/containerd/config.toml"
+    link "$containers/nerdctl/nerdctl.toml"               "$HOME/.config/nerdctl/nerdctl.toml"
+    link "$containers/containerd-stargz-grpc/config.toml" "$HOME/.config/containerd-stargz-grpc/config.toml"
+    link "$containers/soci/config.toml"                   "$HOME/.config/soci/config.toml"
+    link "$containers/nydus/snapshotter.toml"             "$HOME/.config/nydus/snapshotter.toml"
+    link "$containers/nydus/nydusd-config.json"           "$HOME/.config/nydus/nydusd-config.json"
+    link "$containers/nydus/nydusd-rootless"              "$HOME/.local/bin/nydusd-rootless"
+    units=(containerd stargz-snapshotter soci-snapshotter nydus-snapshotter)
+    for unit in "${units[@]}"; do
+      link "$containers/systemd/$unit.service" "$HOME/.config/systemd/user/$unit.service"
+    done
+    if [[ $CHECK_ONLY -eq 0 ]]; then
+      if systemctl --user daemon-reload && systemctl --user enable --quiet "${units[@]/%/.service}"; then
+        ok "container units enabled"
+      else
+        warn "could not reach the user systemd manager; run: systemctl --user enable ${units[*]/%/.service}"
+      fi
+    fi
+    if command -v apparmor_parser >/dev/null 2>&1 \
+       && ! [[ -f "/etc/apparmor.d/$ROOTLESSKIT_PROFILE" ]]; then
+      warn "rootlesskit apparmor profile missing; containerd fails at login until ./install.sh --with-packages"
+    fi
+  else
+    warn "nerdctl-full not installed under ~/.local, skipped"
+  fi
+fi
+
 if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
   echo
   echo "packages"
@@ -143,6 +180,19 @@ if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
     # shellcheck disable=SC2046
     sudo apt-get install -y $(tr '\n' ' ' < "$DOTFILES/linux/apt-packages.txt")
     act "apt packages applied"
+  fi
+
+  # Ubuntu restricts unprivileged user namespaces through AppArmor, so rootlesskit
+  # needs its own profile or rootless containerd fails at every login.
+  if [[ "$OS" == linux ]] && command -v apparmor_parser >/dev/null 2>&1 \
+     && [[ -x "$HOME/.local/nerdctl-full/bin/rootlesskit" ]]; then
+    if cmp -s "$DOTFILES/linux/apparmor/$ROOTLESSKIT_PROFILE" "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"; then
+      ok "rootlesskit apparmor profile"
+    else
+      sudo install -m 0644 "$DOTFILES/linux/apparmor/$ROOTLESSKIT_PROFILE" "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"
+      sudo apparmor_parser -r "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"
+      act "rootlesskit apparmor profile loaded"
+    fi
   fi
 fi
 

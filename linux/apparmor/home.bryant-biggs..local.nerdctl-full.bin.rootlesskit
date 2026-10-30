@@ -1,0 +1,8 @@
+abi <abi/4.0>,
+include <tunables/global>
+
+/home/bryant-biggs/.local/nerdctl-full/bin/rootlesskit flags=(unconfined) {
+  userns,
+
+  include if exists <local/home.bryant-biggs..local.nerdctl-full.bin.rootlesskit>
+}
