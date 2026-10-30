@@ -1,0 +1,16 @@
+[Unit]
+Description=stargz snapshotter (Rootless)
+PartOf=containerd.service
+
+[Service]
+Environment=PATH=/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/usr/sbin:/sbin
+Environment=IPFS_PATH=/home/bryant-biggs/.local/share/ipfs
+ExecStart="/home/bryant-biggs/.local/nerdctl-full/bin/containerd-rootless-setuptool.sh" nsenter -- containerd-stargz-grpc -address "/run/user/1000/containerd-stargz-grpc/containerd-stargz-grpc.sock" -root "/home/bryant-biggs/.local/share/containerd-stargz-grpc" -config "/home/bryant-biggs/.config/containerd-stargz-grpc/config.toml"
+ExecReload=/bin/kill -s HUP $MAINPID
+RestartSec=2
+Restart=always
+Type=simple
+KillMode=mixed
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=nydus snapshotter (Rootless)
+PartOf=containerd.service
+
+[Service]
+Environment=PATH=/home/bryant-biggs/.local/nydus-snapshotter/bin:/home/bryant-biggs/.local/nydus/nydus-static:/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/sbin:/usr/sbin
+ExecStart=/home/bryant-biggs/.local/nerdctl-full/bin/containerd-rootless-setuptool.sh nsenter -- containerd-nydus-grpc --config /home/bryant-biggs/.config/nydus/snapshotter.toml
+ExecReload=/bin/kill -s HUP $MAINPID
+RestartSec=2
+Restart=always
+Type=simple
+# Matches upstream: nydusd daemons outlive a snapshotter restart so their mounts stay up.
+KillMode=process
+
+[Install]
+WantedBy=default.target

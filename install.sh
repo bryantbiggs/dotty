@@ -125,6 +125,33 @@ else
   warn "VS Code not installed, skipped"
 fi
 
+if [[ "$OS" == linux ]]; then
+  echo
+  echo "containers"
+  # Rootless containerd with the stargz, soci and nydus snapshotters. The binaries are
+  # release tarballs unpacked under ~/.local (nerdctl-full, soci, nydus-snapshotter,
+  # nydus); only their configuration and user units live here.
+  if [[ -x "$HOME/.local/nerdctl-full/bin/containerd" ]]; then
+    containers="$DOTFILES/linux/containers"
+    link "$containers/containerd/config.toml"             "$HOME/.config/containerd/config.toml"
+    link "$containers/nerdctl/nerdctl.toml"               "$HOME/.config/nerdctl/nerdctl.toml"
+    link "$containers/containerd-stargz-grpc/config.toml" "$HOME/.config/containerd-stargz-grpc/config.toml"
+    link "$containers/soci/config.toml"                   "$HOME/.config/soci/config.toml"
+    link "$containers/nydus/snapshotter.toml"             "$HOME/.config/nydus/snapshotter.toml"
+    link "$containers/nydus/nydusd-config.json"           "$HOME/.config/nydus/nydusd-config.json"
+    units=(containerd stargz-snapshotter soci-snapshotter nydus-snapshotter)
+    for unit in "${units[@]}"; do
+      link "$containers/systemd/$unit.service" "$HOME/.config/systemd/user/$unit.service"
+    done
+    if [[ $CHECK_ONLY -eq 0 ]]; then
+      systemctl --user daemon-reload
+      systemctl --user enable "${units[@]/%/.service}" 2>/dev/null
+    fi
+  else
+    warn "nerdctl-full not installed under ~/.local, skipped"
+  fi
+fi
+
 if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
   echo
   echo "packages"
@@ -143,6 +170,15 @@ if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
     # shellcheck disable=SC2046
     sudo apt-get install -y $(tr '\n' ' ' < "$DOTFILES/linux/apt-packages.txt")
     act "apt packages applied"
+  fi
+
+  if [[ "$OS" == linux ]]; then
+    # Ubuntu restricts unprivileged user namespaces through AppArmor, so rootlesskit
+    # needs its own profile or rootless containerd fails at every login.
+    profile="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
+    sudo install -m 0644 "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"
+    sudo apparmor_parser -r "/etc/apparmor.d/$profile"
+    act "rootlesskit apparmor profile loaded"
   fi
 fi
 

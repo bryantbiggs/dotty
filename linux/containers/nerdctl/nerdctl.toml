@@ -1,0 +1,2 @@
+# nerdctl-full ships its CNI plugins here; the default is /opt/cni/bin.
+cni_path = "/home/bryant-biggs/.local/nerdctl-full/libexec/cni"
