@@ -1,6 +1,7 @@
 [Unit]
 Description=SOCI snapshotter (Rootless)
 PartOf=containerd.service
+After=containerd.service
 
 [Service]
 Environment=PATH=/home/bryant-biggs/.local/soci:/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/sbin:/usr/sbin

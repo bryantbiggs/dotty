@@ -139,13 +139,17 @@ if [[ "$OS" == linux ]]; then
     link "$containers/soci/config.toml"                   "$HOME/.config/soci/config.toml"
     link "$containers/nydus/snapshotter.toml"             "$HOME/.config/nydus/snapshotter.toml"
     link "$containers/nydus/nydusd-config.json"           "$HOME/.config/nydus/nydusd-config.json"
+    link "$containers/nydus/nydusd-rootless"              "$HOME/.local/bin/nydusd-rootless"
     units=(containerd stargz-snapshotter soci-snapshotter nydus-snapshotter)
     for unit in "${units[@]}"; do
       link "$containers/systemd/$unit.service" "$HOME/.config/systemd/user/$unit.service"
     done
     if [[ $CHECK_ONLY -eq 0 ]]; then
-      systemctl --user daemon-reload
-      systemctl --user enable "${units[@]/%/.service}" 2>/dev/null
+      if systemctl --user daemon-reload && systemctl --user enable --quiet "${units[@]/%/.service}"; then
+        ok "container units enabled"
+      else
+        warn "could not reach the user systemd manager; run: systemctl --user enable ${units[*]/%/.service}"
+      fi
     fi
   else
     warn "nerdctl-full not installed under ~/.local, skipped"
@@ -172,13 +176,18 @@ if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
     act "apt packages applied"
   fi
 
-  if [[ "$OS" == linux ]]; then
-    # Ubuntu restricts unprivileged user namespaces through AppArmor, so rootlesskit
-    # needs its own profile or rootless containerd fails at every login.
-    profile="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
-    sudo install -m 0644 "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"
-    sudo apparmor_parser -r "/etc/apparmor.d/$profile"
-    act "rootlesskit apparmor profile loaded"
+  # Ubuntu restricts unprivileged user namespaces through AppArmor, so rootlesskit
+  # needs its own profile or rootless containerd fails at every login.
+  profile="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
+  if [[ "$OS" == linux ]] && command -v apparmor_parser >/dev/null 2>&1 \
+     && [[ -x "$HOME/.local/nerdctl-full/bin/rootlesskit" ]]; then
+    if cmp -s "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"; then
+      ok "rootlesskit apparmor profile"
+    else
+      sudo install -m 0644 "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"
+      sudo apparmor_parser -r "/etc/apparmor.d/$profile"
+      act "rootlesskit apparmor profile loaded"
+    fi
   fi
 fi
 

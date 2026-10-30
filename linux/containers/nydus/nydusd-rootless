@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Runs nydusd inside the rootless containerd namespace, where two of its startup steps fail:
+#   - It raises its open-file limit to 1000000 and exits when the hard limit is lower. A
+#     rootless user manager cannot go past its own 524288, and nydus-snapshotter has no
+#     setting for extra nydusd flags, so --rlimit-nofile 0 keeps the inherited limit.
+#   - With --log-file it resolves the current directory, which reads as "(unreachable)/"
+#     after nsenter switches mount namespace, and fails with NotFound. cd / gives it one.
+cd /
+exec "${HOME}/.local/nydus/nydus-static/nydusd" "$@" --rlimit-nofile 0

@@ -1,6 +1,7 @@
 [Unit]
 Description=nydus snapshotter (Rootless)
 PartOf=containerd.service
+After=containerd.service
 
 [Service]
 Environment=PATH=/home/bryant-biggs/.local/nydus-snapshotter/bin:/home/bryant-biggs/.local/nydus/nydus-static:/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/sbin:/usr/sbin
