@@ -3,9 +3,9 @@ root = "/home/bryant-biggs/.local/nydus-snapshotter/root"
 address = "/run/user/1000/containerd-nydus/containerd-nydus-grpc.sock"
 daemon_mode = "multiple"
 [daemon]
-# nydusd-config.json applies to every registry: nydusd 2.4 dropped registry mirrors, so there is
-# no per-host scheme and a plain-HTTP registry cannot be allowed without allowing them all. Its
-# digest_validate stays false because nydusd refuses it for RAFS v6 images.
+# nydusd-config.json applies to every registry: nydusd has no per-registry scheme, so a
+# plain-HTTP registry cannot be allowed without allowing them all. Its digest_validate stays
+# false because nydusd refuses it for RAFS v6 images.
 nydusd_config = "/home/bryant-biggs/.config/nydus/nydusd-config.json"
 nydusd_path = "/home/bryant-biggs/.local/bin/nydusd-rootless"
 nydusimage_path = "/home/bryant-biggs/.local/nydus/nydus-static/nydus-image"

@@ -5,6 +5,9 @@ After=containerd.service
 
 [Service]
 Environment=PATH=/home/bryant-biggs/.local/soci:/home/bryant-biggs/.local/nerdctl-full/bin:/usr/bin:/bin:/sbin:/usr/sbin
+# setuptool nsenter reads containerd's child_pid, which rootlesskit writes only once the
+# namespace exists; containerd is Type=simple, so After= alone does not wait for it.
+ExecStartPre=/bin/sh -c 'for i in $$(seq 150); do [ -s %t/containerd-rootless/child_pid ] && [ -e %t/containerd-rootless/netns ] && exit 0; sleep 0.2; done; exit 1'
 ExecStart=/home/bryant-biggs/.local/nerdctl-full/bin/containerd-rootless-setuptool.sh nsenter -- soci-snapshotter-grpc --log-level debug --address /run/user/1000/soci-snapshotter-grpc/soci.sock --root /home/bryant-biggs/.local/soci/root --config /home/bryant-biggs/.config/soci/config.toml
 ExecReload=/bin/kill -s HUP $MAINPID
 RestartSec=2

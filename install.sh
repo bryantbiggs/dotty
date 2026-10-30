@@ -28,6 +28,8 @@ set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP="${HOME}/.dotty-backup/$(date +%Y%m%d-%H%M%S)"
+# AppArmor profile that lets rootlesskit create user namespaces on Ubuntu.
+ROOTLESSKIT_PROFILE="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
 
 WITH_PACKAGES=0
 CHECK_ONLY=0
@@ -151,6 +153,10 @@ if [[ "$OS" == linux ]]; then
         warn "could not reach the user systemd manager; run: systemctl --user enable ${units[*]/%/.service}"
       fi
     fi
+    if command -v apparmor_parser >/dev/null 2>&1 \
+       && ! [[ -f "/etc/apparmor.d/$ROOTLESSKIT_PROFILE" ]]; then
+      warn "rootlesskit apparmor profile missing; containerd fails at login until ./install.sh --with-packages"
+    fi
   else
     warn "nerdctl-full not installed under ~/.local, skipped"
   fi
@@ -178,14 +184,13 @@ if [[ $WITH_PACKAGES -eq 1 && $CHECK_ONLY -eq 0 ]]; then
 
   # Ubuntu restricts unprivileged user namespaces through AppArmor, so rootlesskit
   # needs its own profile or rootless containerd fails at every login.
-  profile="home.bryant-biggs..local.nerdctl-full.bin.rootlesskit"
   if [[ "$OS" == linux ]] && command -v apparmor_parser >/dev/null 2>&1 \
      && [[ -x "$HOME/.local/nerdctl-full/bin/rootlesskit" ]]; then
-    if cmp -s "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"; then
+    if cmp -s "$DOTFILES/linux/apparmor/$ROOTLESSKIT_PROFILE" "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"; then
       ok "rootlesskit apparmor profile"
     else
-      sudo install -m 0644 "$DOTFILES/linux/apparmor/$profile" "/etc/apparmor.d/$profile"
-      sudo apparmor_parser -r "/etc/apparmor.d/$profile"
+      sudo install -m 0644 "$DOTFILES/linux/apparmor/$ROOTLESSKIT_PROFILE" "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"
+      sudo apparmor_parser -r "/etc/apparmor.d/$ROOTLESSKIT_PROFILE"
       act "rootlesskit apparmor profile loaded"
     fi
   fi
