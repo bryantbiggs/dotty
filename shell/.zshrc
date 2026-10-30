@@ -50,6 +50,13 @@ plugins=()
 ZSH_DISABLE_COMPFIX=true
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#ffff00,fg=#000000"
 
+# The system zsh does not search Homebrew's completion directory, so formula
+# completions (gh, kubectl, helm, aws, uv) only load if it is added here, before
+# oh-my-zsh runs compinit. On macOS, brew shellenv already adds it.
+if (( OS_LINUX )); then
+  fpath=("/home/linuxbrew/.linuxbrew/share/zsh/site-functions" $fpath)
+fi
+
 source "$ZSH/oh-my-zsh.sh"
 
 autoload -U +X bashcompinit && bashcompinit
@@ -90,6 +97,10 @@ alias ghclean='gh run list --limit 100 --json databaseId -q ".[].databaseId" | x
 if (( OS_MACOS )); then
   alias brewup="brew update; brew outdated; mas upgrade; brew cleanup; brew doctor"
 else
+  # The snap ruby on PATH matches Homebrew's required version but ships no
+  # fiddle, so brew falls back to it and loses the Landlock sandbox, and
+  # brew cleanup then deletes the vendored ruby as unused. Force the vendored one.
+  export HOMEBREW_FORCE_VENDOR_RUBY=1
   alias brewup="brew update; brew outdated; brew cleanup; brew doctor"
 fi
 

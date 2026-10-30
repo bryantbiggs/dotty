@@ -26,11 +26,7 @@
 # which is not fully GNU compatible, so Homebrew's GNU build is a real upgrade
 # rather than a duplicate.
 
-tap "cargo-lambda/tap", "https://github.com/cargo-lambda/homebrew-tap.git"
 tap "clowdhaus/taps"
-tap "filosottile/musl-cross"
-tap "github/gh"
-tap "wata727/tflint"
 # Record and share terminal sessions
 brew "asciinema"
 # Official Amazon AWS command-line interface
@@ -51,8 +47,6 @@ brew "direnv"
 brew "dive"
 # Isolated development environments using Docker
 brew "docker-compose"
-# Command-line tool to interact with exercism.io
-brew "exercism"
 # Modern, maintained replacement for ls
 brew "eza"
 # Command-line fuzzy finder written in Go
@@ -83,14 +77,8 @@ brew "kind"
 brew "ko"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
-# Report faked system time to programs
-brew "libfaketime"
 # Create modern online books from Markdown files
 brew "mdbook"
-# Minify and secure Docker images
-brew "mintoolkit"
-# Collection of tools that nobody wrote when UNIX was young
-brew "moreutils"
 # Manage multiple Node.js versions
 brew "nvm"
 # Python dependency management tool
@@ -98,7 +86,7 @@ brew "pipenv"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Framework for managing multi-language pre-commit hooks
-brew "pre-commit", link: false
+brew "pre-commit"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # CLI proxy to minimize LLM token consumption
@@ -113,22 +101,18 @@ brew "stern"
 brew "terraform-docs"
 # Terraform version manager inspired by rbenv
 brew "tfenv"
-# Linter for Terraform files
-brew "tflint"
 # Compress/expand executable files
 brew "upx"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Command-line interface to the WakaTime api
 brew "wakatime-cli"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Additional completion definitions for zsh
-brew "zsh-completions"
-# Zsh port of Fish shell's history search
-brew "zsh-history-substring-search"
-# Fish shell like syntax highlighting for zsh
-brew "zsh-syntax-highlighting"
+# A CLI to aid in upgrading Amazon EKS clusters
+brew "clowdhaus/taps/eksup", trusted: true
+# Microsoft Azure CLI 2.0
+cask "azure-cli"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
 vscode "ahmadawais.shades-of-purple"
 vscode "andrejunges.handlebars"
 vscode "celianriboulet.webvalidator"
@@ -153,7 +137,13 @@ vscode "svelte.svelte-vscode"
 vscode "tamasfe.even-better-toml"
 vscode "usernamehw.errorlens"
 vscode "wakatime.vscode-wakatime"
+go "golang.org/x/tools/cmd/deadcode"
+go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
+go "golang.org/x/vuln/cmd/govulncheck"
+go "sigs.k8s.io/controller-runtime/tools/setup-envtest"
+go "github.com/aarzilli/whydeadcode"
 cargo "cargo-audit"
+cargo "cargo-auditable"
 cargo "cargo-crap"
 cargo "cargo-deny"
 cargo "cargo-dist"
@@ -167,16 +157,16 @@ cargo "cargo-machete"
 cargo "cargo-mutants"
 cargo "cargo-nextest"
 cargo "cargo-outdated"
+cargo "cargo-public-api"
+cargo "cargo-release"
 cargo "cargo-tarpaulin"
 cargo "cargo-udeps"
+cargo "cargo-update"
 cargo "cargo-vet"
+cargo "code-dupes"
 cargo "flamegraph"
 cargo "hyperfine"
 cargo "just"
-cargo "mdbook-admonish"
-cargo "mdbook-catppuccin"
-cargo "mdbook-linkcheck"
-cargo "mdbook-pagetoc"
-cargo "mdbook-toc"
 cargo "prek"
 cargo "ruget"
+uv "aws-sam-cli"

@@ -90,6 +90,51 @@ else
   skip "brew not found"
 fi
 
+# Homebrew core has no tflint formula and the vendor tap's cask warns on every
+# brew command, so on Linux it comes from the GitHub release, checked against the
+# release's published checksums.
+TFLINT_BIN="${HOME}/.local/bin/tflint"
+install_tflint() {
+  local tag="$1" arch tmp rc
+  case "$(uname -m)" in
+    x86_64) arch=amd64 ;;
+    aarch64|arm64) arch=arm64 ;;
+    *) echo "unsupported architecture: $(uname -m)" >&2; return 1 ;;
+  esac
+  tmp="$(mktemp -d)"
+  (
+    cd "$tmp" \
+      && gh release download "$tag" -R terraform-linters/tflint \
+           -p "tflint_linux_${arch}.zip" -p checksums.txt \
+      && sha256sum -c --ignore-missing checksums.txt \
+      && unzip -q "tflint_linux_${arch}.zip" tflint \
+      && install -m 0755 tflint "$TFLINT_BIN"
+  )
+  rc=$?
+  rm -rf "$tmp"
+  return $rc
+}
+
+if [[ "$OSTYPE" == linux* ]]; then
+  section "tflint"
+  if [[ ! -x "$TFLINT_BIN" ]]; then
+    skip "not installed at $TFLINT_BIN"
+  elif ! have gh; then
+    skip "gh not found"
+  else
+    latest="$(gh release view -R terraform-linters/tflint --json tagName -q .tagName)"
+    current="v$("$TFLINT_BIN" --version | head -1 | awk '{print $NF}')"
+    if [[ -z "$latest" ]]; then
+      printf '   \033[31mfailed:\033[0m could not read the latest tflint release\n'
+      failed+=("tflint release lookup")
+    elif [[ "$latest" == "$current" ]]; then
+      skip "up to date ($current)"
+    else
+      run install_tflint "$latest"
+    fi
+  fi
+fi
+
 # ---------------------------------------------------------------- rust
 section "rust"
 if have rustup; then
